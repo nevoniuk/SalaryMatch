@@ -1,3 +1,7 @@
+<script>
+  import { Dropdown, DropdownItem, DropdownDivider, DropdownHeader } from 'flowbite-svelte'
+  let dropdownOpen = false;
+</script>
 <style>
 
     :root {
@@ -77,6 +81,13 @@
     <div class="navItem">
         <span class="material-symbols-outlined orange-hover"> search </span>
     </div>
+    <Button>my dropdown</Button>
+        <Dropdown>
+                <DropdownItem>My downloads</DropdownItem>
+                <DropdownItem>Settings</DropdownItem>
+                <DropdownItem>Earnings</DropdownItem>
+                <DropdownItem>Sign out</DropdownItem>
+        </DropDown>
     <div class="navItem">
         <p class="nav-text orange-hover">
             Add Offer
