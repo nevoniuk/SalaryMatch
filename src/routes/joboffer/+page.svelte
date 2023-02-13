@@ -12,6 +12,9 @@
 	async function doPost () {
 		const res = await fetch('https://httpbin.org/post', {
 			method: 'POST',
+			headers: {
+                'Content-Type': 'application/json'
+            },
 			body: JSON.stringify({
 				city,
 				company,
@@ -21,8 +24,9 @@
 			})
 		})
 		
-		const json = await res.json()
-		result = JSON.stringify(json)
+		const json = await res.json();
+		result = JSON.stringify(json);
+		const { id } = await (await fetch(`/api/CreateJobOffer`, req)).json();
 	}
 	
 </script>
