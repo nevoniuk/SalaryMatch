@@ -1,3 +1,6 @@
+<script>
+	import './styles.css';
+</script>
 
 <style>
 
@@ -13,7 +16,7 @@
 
     nav {
         width: 100%;
-        background-color: #D8D9EE;
+        background-color: var(--card-color);
         position: fixed;
         display: flex;
         flex-wrap: wrap;
@@ -80,8 +83,7 @@
     </div>
     <div class="navItem">
         <p class="nav-text orange-hover">
-            <a href="/joboffer"> Add Offer
-            </a>
+            Add Offer
         </p>
     </div>
     <div class="navItem">
