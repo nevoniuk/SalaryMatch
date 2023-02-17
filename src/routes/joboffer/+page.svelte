@@ -26,7 +26,6 @@
 		
 		const json = await res.json();
 		result = JSON.stringify(json);
-		const { id } = await (await fetch(`/api/CreateJobOffer`, req)).json();
 	}
 	
 </script>
@@ -91,18 +90,18 @@
 	.title {
 		position: absolute;
 		top: 100px;
-		left:10px;
+		left:60px;
 	}
 	.gridL {
 		position: absolute;
 		top: 200px;
-		left: 20px;
+		left: 60px;
 		display: grid;
 	}
 	.gridR {
 		position: absolute;
 		top: 200px;
-		left: 150px;
+		left: 210px;
 		display: grid;
 	}
 	
@@ -112,7 +111,7 @@
 		height: 50%;
 	}
 	.gridR .child2 {
-		margin-top: 7px;
+		margin-top: 9px;
 		width: 100%;
 		height: 50%;
 	}
