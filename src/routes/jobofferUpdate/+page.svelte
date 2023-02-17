@@ -1,7 +1,6 @@
 <script>
 	import { Heading, P, A, Label, Input } from 'flowbite-svelte'
-	
-	import {joboffers} from './jobs.ts'
+	import {joboffers} from './jobs.ts' /* will contain a function to retrieve data from cosmos*/
 	console.log(joboffers.length);
 </script>
 
