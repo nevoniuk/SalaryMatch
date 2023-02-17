@@ -95,7 +95,7 @@
             <p>Forgot Password</p>
         </div>
         <div class="button">
-            <p>Create Account</p>
+            <a href="/signup">Create Account</a>
         </div>
     </div>
 </div>
