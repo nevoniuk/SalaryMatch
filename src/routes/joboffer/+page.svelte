@@ -113,8 +113,8 @@
 	}
 	.submitButton {
 		position: absolute;
-		top: 550px;
-		left: 1000px;
+		top: 450px;
+		left: 360px;
 	}
 	
 
