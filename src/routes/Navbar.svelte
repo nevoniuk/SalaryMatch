@@ -73,7 +73,7 @@
 </style>
 <nav>
     <div class="navItem logo">
-		<img src="./salary_match_logo.png" alt="" />
+		<img src="/salary_match_logo.png" alt="" />
     </div>
     <div class="navItem">
         <span class="material-symbols-outlined orange-hover"> home </span>
