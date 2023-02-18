@@ -83,10 +83,6 @@
 
 
 <style>
-	body { 
-		height:100%;
-		background: linear-gradient(green 40%, transparent 40%) no-repeat;
-	}
 	.title {
 		position: absolute;
 		top: 100px;
