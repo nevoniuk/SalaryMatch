@@ -86,7 +86,7 @@
     </div>
     <div class="navItem">
         <p class="nav-text orange-hover">
-            Other Thing 
+            <a href="/CityOptions"> Other Thing</a>
         </p>
     </div>
     <div class="navItem profile-icon rightSideFlex">
