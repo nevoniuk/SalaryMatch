@@ -75,7 +75,7 @@
 </style>
 <nav>
     <div class="navItem logo">
-		<img src="./salary_match_logo.png" alt="" />
+		<img src="/salary_match_logo.png" alt="" />
     </div>
     <div class="navItem">
         <span class="material-symbols-outlined orange-hover"> home </span>
@@ -85,7 +85,8 @@
     </div>
     <div class="navItem">
         <p class="nav-text orange-hover">
-            Add Offer
+            <a href="/createjoboffer"> Add Offer
+            </a>
         </p>
     </div>
     <div class="navItem">
