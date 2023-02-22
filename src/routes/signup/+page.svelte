@@ -1,18 +1,15 @@
 <style>
 
-    .login.card {
+    .login-card {
         display: flex;
         align-items: center;
         align-self: center;
         justify-content: center;
         flex-direction: column;
-        margin: 100px;
-        margin-left: 30px;
-        margin-right: 30px;
-        padding-bottom: 60px;
-        padding-top: 40px;
+        background-color: var(--card-color);
+        box-shadow: 2px 2px 4px 0px rgba(34, 17, 66,0.4);
+        padding: 15px;
     }
-
 
     .login-text {
         font-size: 25px;
@@ -66,8 +63,10 @@
         font-size: 16px;
     }
 </style>
-<div class="login card">
-    <p class="login-text">Login</p>
+<div style="height:100px"></div>
+
+<div class="login-card">
+    <p class="login-text">Sign Up</p>
     <form>
         <div class="icon-container">
             <span class="material-symbols-outlined">
@@ -86,16 +85,11 @@
     </form>
 
     <div class="bigger button">
-        <p>
-            Sign In
-        </p>
+        <button>
+            <p>
+                Sign Up
+            </p>
+        </button>
     </div>
-    <div class="other-buttons-container">
-        <div class="button">
-            <p>Forgot Password</p>
-        </div>
-        <div class="button">
-            <p>Create Account</p>
-        </div>
-    </div>
+
 </div>
