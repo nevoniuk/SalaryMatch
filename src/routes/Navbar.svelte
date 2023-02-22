@@ -32,6 +32,8 @@
         align-items: center;
         margin-left: 10px;
         margin-right: 10px;
+
+        cursor: pointer;
     }
 
     .nav-text {
