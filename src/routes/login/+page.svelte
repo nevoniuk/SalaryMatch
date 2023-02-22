@@ -1,16 +1,18 @@
-<h1>hello world</h1>
 <style>
 
-    .login-card {
+    .login.card {
         display: flex;
         align-items: center;
         align-self: center;
         justify-content: center;
         flex-direction: column;
-        background-color: var(--card-color);
-        box-shadow: 2px 2px 4px 0px rgba(34, 17, 66,0.4);
-        padding: 15px;
+        margin: 100px;
+        margin-left: 30px;
+        margin-right: 30px;
+        padding-bottom: 60px;
+        padding-top: 40px;
     }
+
 
     .login-text {
         font-size: 25px;
@@ -64,9 +66,7 @@
         font-size: 16px;
     }
 </style>
-<div style="height:100px"></div>
-
-<div class="login-card">
+<div class="login card">
     <p class="login-text">Login</p>
     <form>
         <div class="icon-container">
