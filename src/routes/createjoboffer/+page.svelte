@@ -8,7 +8,7 @@
 	let salary = '110000';
 	let bonus = '10000';
 	let relocation = '5000';
-
+	export let form;
 	async function doPost () {
 		const res = await fetch('https://httpbin.org/post', {
 			method: 'POST',
@@ -44,6 +44,12 @@
 				<Label for='small-input' class='block mb-2'>City</Label>
 			</div>
 		<div class='child1'>
+				<Label for='small-input' class='block mb-2'>Sate</Label>
+			</div>
+		<div class='child1'>
+				<Label for='small-input' class='block mb-2'>Title</Label>
+			</div>
+		<div class='child1'>
 				<Label for='small-input' class='block mb-2'>Company</Label>
 			</div>
 		<div class='child1'>
@@ -53,33 +59,45 @@
 				<Label for='small-input' class='block mb-2'>Sign-on Bonus</Label>
 			</div>
 		<div class='child1'>
-				<Label for='small-input' class='block mb-2'>Relocation Sum</Label>
+				<Label for='small-input' class='block mb-2'>Relocation Bonus</Label>
 			</div>
+		<div class='child1'>
+			<Label for='small-input' class='block mb-2'>RSU</Label>
+		</div>
 							
 	</div>
-
-	<div class= 'gridR'>
-		<div class='child2'>
-				<Input size="sm" placeholder="Santa Monica, CA" bind:value={city} />
+	<form method="POST" action="?/create">
+		<div class= 'gridR'>
+			<div class='child2'>
+					<Input size="sm" placeholder="Santa Monica, CA" name="city"/>
 			</div>
-		<div class='child2'>
-				<Input size="sm" placeholder="Google" bind:value={company} />
+			<div class='child2'>
+				<Input size="sm" placeholder="CA" name="state"/>
 			</div>
-		<div class='child2'>
-				<Input size="sm" placeholder="110000" bind:value={salary} />
+			<div class='child2'>
+				<Input size="sm" placeholder="Software Engineer" name="title"/>
 			</div>
-		<div class='child2'>
-				<Input size="sm" placeholder="10000" bind:value={bonus} />
+			<div class='child2'>
+					<Input size="sm" placeholder="Google" name="company" />
+				</div>
+			<div class='child2'>
+					<Input size="sm" placeholder="110000" name="salary" />
+				</div>
+			<div class='child2'>
+					<Input size="sm" placeholder="10000" name="bonus" />
+				</div>
+			<div class='child2'>
+					<Input size="sm" placeholder="5000" name="relocation" />
+				</div>
+			<div class='child2'>
+					<Input size="sm" placeholder="5000" name="rsu"/>
 			</div>
-		<div class='child2'>
-				<Input size="sm" placeholder="5000" bind:value={relocation} />
-			</div>
-	</div>
-	<div class= 'submitButton'>
-		<Button color="alternative" pill={true} on:click={doPost}>Submit</Button>
-	</div>
-	
-	</main>
+		</div>
+		<div class= 'submitButton'>
+			<button formaction="?/create" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Submit</button>
+		</div>
+	</form>
+</main>
 
 
 <style>
@@ -113,8 +131,8 @@
 	}
 	.submitButton {
 		position: absolute;
-		top: 450px;
-		left: 360px;
+		top: 550px;
+		left: 500px;
 	}
 	
 
