@@ -74,6 +74,7 @@
 	</div>
 	<div class= 'submitButton'>
 		<Button color="alternative" pill={true} on:click={doPost}>Submit</Button>
+		<p> </p>
 	</div>
 	
 	</main>
