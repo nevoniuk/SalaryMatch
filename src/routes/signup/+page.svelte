@@ -1,4 +1,3 @@
-<h1>hello world</h1>
 <style>
 
     .login-card {
@@ -67,7 +66,7 @@
 <div style="height:100px"></div>
 
 <div class="login-card">
-    <p class="login-text">Login</p>
+    <p class="login-text">Sign Up</p>
     <form>
         <div class="icon-container">
             <span class="material-symbols-outlined">
@@ -86,16 +85,11 @@
     </form>
 
     <div class="bigger button">
-        <p>
-            Sign In
-        </p>
+        <button>
+            <p>
+                Sign Up
+            </p>
+        </button>
     </div>
-    <div class="other-buttons-container">
-        <div class="button">
-            <p>Forgot Password</p>
-        </div>
-        <div class="button">
-            <p>Create Account</p>
-        </div>
-    </div>
+
 </div>

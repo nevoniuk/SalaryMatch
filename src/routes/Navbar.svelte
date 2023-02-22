@@ -1,3 +1,6 @@
+<script>
+	import './styles.css';
+</script>
 
 <style>
 
@@ -13,7 +16,7 @@
 
     nav {
         width: 100%;
-        background-color: #D8D9EE;
+        background-color: var(--card-color);
         position: fixed;
         display: flex;
         flex-wrap: wrap;
@@ -29,6 +32,8 @@
         align-items: center;
         margin-left: 10px;
         margin-right: 10px;
+
+        cursor: pointer;
     }
 
     .nav-text {
@@ -70,7 +75,7 @@
 </style>
 <nav>
     <div class="navItem logo">
-		<img src="./salary_match_logo.png" alt="" />
+		<img src="/salary_match_logo.png" alt="" />
     </div>
     <div class="navItem">
         <span class="material-symbols-outlined orange-hover"> home </span>
@@ -80,7 +85,7 @@
     </div>
     <div class="navItem">
         <p class="nav-text orange-hover">
-            <a href="/joboffer"> Add Offer
+            <a href="/createjoboffer"> Add Offer
             </a>
         </p>
     </div>
