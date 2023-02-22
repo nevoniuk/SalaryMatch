@@ -133,6 +133,8 @@
 		position: absolute;
 		top: 550px;
 		left: 500px;
+		
+
 	}
 	
 
