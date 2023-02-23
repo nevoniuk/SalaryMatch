@@ -1,4 +1,6 @@
 <script>
+	import PopulationBar from "./PopulationBar.svelte";
+
     export let data;
 </script>
 
@@ -14,10 +16,11 @@
         width: 100%;
         background-color: green;
         display: flex;
-        padding: 10px;
+        padding: 30px;
         background-color: var(--card-color);
         box-shadow: 2px 2px 4px 0px rgba(34, 17, 66,0.4);
         justify-content: center;
+        flex-wrap: wrap;
     }
 
     .city-img {
@@ -30,16 +33,25 @@
         height: 250px;
         margin-right: 20px;
     }
+
 </style>
 
-<h1 class="city-title">San Francisco</h1>
+<h1 class="city-title">{data.city.name}</h1>
 <div class="card">
-    <div class="city-img-container">
-        <img class="city-img" src="https://via.placeholder.com/200"/>
+    <!-- <div class="city-img-container"> -->
+        <!-- <img class="city-img" src="https://via.placeholder.com/200"/> -->
+    <!-- </div> -->
+    <div>
+        Average rent: ${data.city.average_rent} / month
+        <br>
+        Total Population: {Math.floor(data.city.total_population)}k People
+        <br>
+        <br>
+        <PopulationBar subsetName="Caucasian" subsetTotal={data.city.caucasian_population} total={data.city.total_population} />
+        <PopulationBar subsetName="Black" subsetTotal={data.city.black_population} total={data.city.total_population} />
+        <PopulationBar subsetName="Native American" subsetTotal={data.city.native_american_population} total={data.city.total_population} />
+        <PopulationBar subsetName="Asian American" subsetTotal={data.city.asian_american_population} total={data.city.total_population} />
+        <PopulationBar subsetName="Pacific Islander" subsetTotal={data.city.pacific_islander_population} total={data.city.total_population} />
+        <PopulationBar subsetName="Hispanic" subsetTotal={data.city.hispanic_population} total={data.city.total_population} />
     </div>
-    <p>
-        Located in California<br>
-        Average rent: $50 / month<br>
-        Weather is hot and dry
-    </p>
 </div>
