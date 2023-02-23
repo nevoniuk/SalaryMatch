@@ -1,9 +1,17 @@
+import type {PageServerLoad} from './$types'
 import type { Action, Actions, RequestEvent} from "@sveltejs/kit";
 import { fail } from '@sveltejs/kit';
 /** @type {import('./$types').Actions} */
+//This will not work yet
+export const load: PageServerLoad  = async ({ fetch, params}) => {
+	const response = await fetch(`https://salarymatch.azurewebsites.net/api/joboffers/` + params.offerID);
+	const data  = await response.json();
+	return data;
+}
+
 export const actions = {
-	create: async ({request} : RequestEvent) => {
-		// TODO obtain id
+	update: async ({request} : RequestEvent) => {
+		// TODO obtain user id
 		const data = await request.formData();
 		const id = "100";
 		const city = data.get('city');

@@ -1,7 +1,8 @@
 <script>
 	import { Heading, P, A, Label, Input } from 'flowbite-svelte'
-	import {joboffers} from './jobs.ts' /* will contain a function to retrieve data from cosmos*/
-	console.log(joboffers.length);
+	export let data;
+	const { jobOfferData } = data;
+	console.log(data);
 </script>
 
 <svelte:head>
@@ -18,7 +19,7 @@
 	</div>
 	<div class= "slidercontainer">
 		<div class="slider">
-			{#each joboffers as offer}
+			{#each jobOfferData as offer}
 				<section>
 					<div class= "titleAndEdit">
 						<div class="offeritem">
@@ -32,7 +33,27 @@
 					</div>
 					<div class="offeritem">
 						<p>
-							{offer.title}
+							Company: {offer.company}
+						</p>
+					</div>
+					<div class="offeritem">
+						<p>
+							Location: {offer.city}, {offer.state}
+						</p>
+					</div>
+					<div class="offeritem">
+						<p>
+							Salary: {offer.salary}
+						</p>
+					</div>
+					<div class="offeritem">
+						<p>
+							Sign-on bonus: {offer.signing_bonus}
+						</p>
+					</div>
+					<div class="offeritem">
+						<p>
+							Relocation Bonus: {offer.relocation_bonus}
 						</p>
 					</div>
 				</section>
@@ -74,7 +95,7 @@
 		border-right: 1px solid white;
 		padding: 1rem;
 		min-width: 20vw;
-		height: 20vh;
+		height: 30vh;
 		scroll-snap-align: start;
 		text-align: center;
 		position: relative;
