@@ -1,5 +1,8 @@
 <script>
 	import './styles.css';
+    import { Avatar, Button, Dropdown, DropdownItem, Search } from 'flowbite-svelte';
+
+    let loggedIn = false;
 </script>
 
 <style>
@@ -19,11 +22,12 @@
         background-color: var(--card-color);
         position: fixed;
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         box-shadow: 0px 0px 5px rgb(34, 17, 66);
+        z-index: 99999;
+        align-items: center;
     }
     .navItem {
-        /* height: 50px; */
         margin-top: 6px;
         margin-bottom: 6px;
 
@@ -46,13 +50,13 @@
         border-radius: 10px;
         background-color: #FFC187;
     }
-    .rightSideFlex {
+    /* .rightSideFlex {
         margin-left: auto;
-    }
+    } */
     .material-symbols-outlined {
         font-size: var(--nav-height);
     }
-    .logo > img {
+    .logo > a > img {
         width: var(--nav-height);
         height: var(--nav-height);
         background-color: #FFF7EA;
@@ -60,7 +64,7 @@
         border-color:orange;
         border-radius: 50%;
     }
-
+/* 
     .profile-icon > img {
         width: var(--nav-height);
         height: var(--nav-height);
@@ -70,20 +74,24 @@
     .profile-icon > img:hover {
         border-width:2px;
         border-color:white;
-    }
+    } */
 
 </style>
 <nav>
     <div class="navItem logo">
-		<img src="/salary_match_logo.png" alt="" />
+		<a href="/"><img src="/salary_match_logo.png" alt="" /></a>
     </div>
     <div class="navItem">
-        <span class="material-symbols-outlined orange-hover"> <a href="/login">home
-            </a></span>
+        <a href="/"><span class="material-symbols-outlined orange-hover"> home </span></a>
     </div>
-    <div class="navItem">
+    <div class="w-[50%] mr-auto">
+        <Search size="md">
+            <Button gradient color="cyanToBlue" size="xs" >Search</Button>
+        </Search>
+    </div>
+    <!-- <div class="navItem">
         <span class="material-symbols-outlined orange-hover"> search </span>
-    </div>
+    </div> -->
     <div class="navItem">
         <p class="nav-text orange-hover">
             <a href="/createjoboffer"> Add Offer
@@ -106,7 +114,24 @@
             <a href="/companies"> Companies</a>
         </p>
     </div>
-    <div class="navItem profile-icon rightSideFlex">
-        <img src="https://picsum.photos/200" alt=""/>
+    <div class="navItem">
+        <p class="nav-text orange-hover">
+            <a href="/state"> States</a>
+        </p>
     </div>
+    <div class="navItem">
+        <p class="nav-text orange-hover">
+            <a href="/profile"> Profile</a>
+        </p>
+    </div>
+    {#if loggedIn}
+        <Avatar id="profile-pic" src="https://picsum.photos/200" alt="" class="rounded-full w-[50px] h-[50px] cursor-pointer"/>
+        <!-- Dropdown menu -->
+        <Dropdown placement="bottom" triggeredBy="#profile-pic">
+            <DropdownItem><a href="/profile">My Profile</a></DropdownItem>
+            <DropdownItem on:click={() => loggedIn = false}><a href="/">Log Out</a></DropdownItem>
+        </Dropdown>
+    {:else}
+        <a href="/login"><Button gradient color="cyanToBlue" size="xs" on:click={() => loggedIn = true} >Log In</Button></a>
+    {/if}
 </nav>

@@ -1,4 +1,5 @@
 <script>
+    import { Button } from 'flowbite-svelte';
     import {authToken} from '../../auth'
     let onSignIn = async () => {
         console.log("Sign I???n");
@@ -131,5 +132,9 @@
         <div class="button">
             <a href="/signup">Create Account</a>
         </div>
+    </div>
+    <div class="flex flex-col items-center">
+        <div class="text-base">First time?</div>
+        <a href="/signup"><Button gradient color="purpleToBlue" size="md" class="w-full">Sign Up</Button></a>
     </div>
 </div>

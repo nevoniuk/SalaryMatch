@@ -28,6 +28,8 @@
 	}
 
 	main {
-		margin-top: 50px;
+		padding-top: 75px;
+		padding-inline: 15px;
+		padding-bottom: 15px;
 	}
 </style>

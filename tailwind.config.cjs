@@ -7,7 +7,14 @@ const config = {
 	],
   
 	theme: {
-	  extend: {},
+	  extend: {
+		colors: {
+			'sm-orange': '#FE7B02',
+		},
+		fontFamily: {
+			'inter': ['Inter'],
+		}
+	  },
 	},
   
 	plugins: [

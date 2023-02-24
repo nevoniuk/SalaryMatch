@@ -1,4 +1,5 @@
 <script>
+    import { Button } from "flowbite-svelte";
     import Dropdown from "../Dropdown.svelte";
     import DropdownSet from "./DropdownSet.svelte";
 
@@ -140,7 +141,7 @@
         margin-left: 30px;
         margin-right: 30px;
     }
-    .button > p {
+    /* .button > p {
         font-size: 12px;
         font-weight: bold;
     }
@@ -150,7 +151,7 @@
     }
     .bigger >  p {
         font-size: 16px;
-    }
+    } */
 </style>
 
 <div class="prefs card">
@@ -194,6 +195,11 @@
             <p>
                 Sign Up
             </p>
+    </div>
+
+    <div class="flex flex-col items-center">
+        <div>Already done this?</div>
+        <a href="/login"><Button gradient color="redToYellow" size="md" class="w-full">Log In</Button></a>
     </div>
 
 </div>
