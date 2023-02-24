@@ -92,6 +92,12 @@
     </div>
     <div class="navItem">
         <p class="nav-text orange-hover">
+            <a href="/UpdateOffer"> Update Offers
+            </a>
+        </p>
+    </div>
+    <div class="navItem">
+        <p class="nav-text orange-hover">
             <a href="/CityOptions"> Cities</a>
         </p>
     </div>
