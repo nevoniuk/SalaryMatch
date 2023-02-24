@@ -9,19 +9,19 @@
 	</div>
 	<div class= 'cityOptions'>
 		<div class='child1'>
-				<Button href="/CityOptions/{"Los Angeles"}">Los Angeles</Button>
+				<Button href="/city/d3aa6632-1c06-4e11-bae3-db72baff8ef0">Los Angeles</Button>
 		</div>
 		<div class='child1'>
-				<Button href="/CityOptions/{"New York City"}">New York City</Button>
+				<Button href="/city/903a5f9c-ff50-4777-80ef-3d96ad6f3425">New York City</Button>
 			</div>
 		<div class='child1'>
-				<Button href="/CityOptions/{"Chicago"}">Chicago</Button>
+				<Button href="/city/a53a3422-be4b-4aeb-8435-7f248109d066">Chicago</Button>
 			</div>
 		<div class='child1'>
-				<Button href="/CityOptions/{"Seattle"}">Seattle</Button>
+				<Button href="/city/64e17b21-75df-4b9b-b7ad-acce02a5b569">Seattle</Button>
 			</div>
 		<div class='child1'>
-				<Button href="/CityOptions/{"Phoenix"}">Phoenix</Button>
+				<Button href="/city/3c2a7eb4-b6a4-409f-954c-912341b8675a">Phoenix</Button>
 			</div>
 							
 	</div>
