@@ -1,6 +1,6 @@
 <script>
     export let groupTitle = "Default";
-    export let prefSelections = [{name: "default_title", options: ["default_option"]}];
+    export let prefSelections = [{name: "default_title", options: ["default_option"], onOptionSelected: (a)=>{}}];
 	import Dropdown from "../Dropdown.svelte";
 
 </script>
@@ -36,7 +36,7 @@
         {#each prefSelections as prefSelection}
         <div>
             <h1 class="pref-title">{prefSelection.name}</h1>
-            <Dropdown options={prefSelection.options}/>
+            <Dropdown options={prefSelection.options} onOptionSelected={prefSelection.onOptionSelected}/>
         </div>
         {/each}
     </div>

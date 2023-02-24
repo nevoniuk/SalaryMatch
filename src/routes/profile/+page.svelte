@@ -1,7 +1,33 @@
 <script>
 	import Dropdown from "../Dropdown.svelte";
     import DropdownSet from "./DropdownSet.svelte";
-    let onSave = () => {};
+
+    const preferences = new Object();
+
+    const onMainOptionChanged = (prefName, option) => {
+        preferences[prefName] = option;
+    };
+
+    const prefSelections = {
+        "temperature": {name: "Temperature", options: ["Hot", "Mild", "Cold"], onOptionSelected: null},
+        "humidity": {name: "Humidity", options: ["Wet", "Mild", "Dry"], onOptionSelected: null},
+        "sunlight": {name: "Sunlight", options: ["Sunny", "Mild", "Shady"], onOptionSelected: null},
+        "demographics": {name: "Demographics", options: ["A", "B", "C"], onOptionSelected: null},
+        "salary": {name: "Salary", options: ["4 Figure", "5 Figure", "6 Figure"], onOptionSelected: null},
+        "pto": {name: "PTO", options: ["High", "Medium", "Low"], onOptionSelected: null}
+    };
+
+    // make every pref selection have its reactive function use the "onMainOptionChanged" function
+    for (const key in prefSelections) {
+        prefSelections[key].onOptionSelected = (option) => onMainOptionChanged(key, option);
+    }
+
+    let onSave = () => {
+        // save each item in preferences
+        // note that every kind of preference (e.g., "pto") might not be in it
+    };
+
+
 </script>
 
 <style>
@@ -48,14 +74,14 @@
 <div class="prefs card">
     <div class="card-content">
         <DropdownSet groupTitle={"Weather"} prefSelections={[
-            {name: "Temperature", options: ["Hot", "Mild", "Cold"]},
-            {name: "Humidity", options: ["Wet", "Mild", "Dry"]},
-            {name: "Sunlight", options: ["Sunny", "Mild", "Shady"]}
+            prefSelections["temperature"],
+            prefSelections["humidity"],
+            prefSelections["sunlight"]
         ]}  />
         <DropdownSet groupTitle={"Company"} prefSelections={[
-            {name: "Demographics", options: ["A", "B", "C"]},
-            {name: "Salary", options: ["4 Figure", "5 Figure", "6 Figure"]},
-            {name: "PTO", options: ["High", "Medium", "Low"]}
+            prefSelections["demographics"],
+            prefSelections["salary"],
+            prefSelections["pto"]
         ]}/>
         <button class="save-button" on:click={onSave}>
             <p>Save</p>

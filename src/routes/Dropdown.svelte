@@ -1,5 +1,6 @@
 <script>
     export let options = ["default"];
+    export let onOptionSelected = (a) => {};
     let dropped = false;
     let selectedOption = null;
     let dropdownClick = (args) => {
@@ -8,6 +9,7 @@
     let selectOption = (option) => {
         selectedOption = option;
         dropped = false;
+        onOptionSelected(option);
     }
 </script>
 
