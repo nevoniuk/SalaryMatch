@@ -1,7 +1,7 @@
 <script>
 	import Dropdown from "../Dropdown.svelte";
     import DropdownSet from "./DropdownSet.svelte";
-
+    import {authToken} from '../../auth';
     const preferences = new Object();
 
     const onMainOptionChanged = (prefName, option) => {
@@ -22,10 +22,32 @@
         prefSelections[key].onOptionSelected = (option) => onMainOptionChanged(key, option);
     }
 
-    let onSave = () => {
-        // save each item in preferences
-        // note that every kind of preference (e.g., "pto") might not be in it
-        console.log(preferences["temperature"]);
+    let onSave = async () => {
+        const post = (await fetch("https://salarymatch.azurewebsites.net/api/users", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + $authToken
+            },
+            body: JSON.stringify({
+                temperature_preference: preferences["temperature"],
+                humidity_preference: preferences["humidity"],
+                sunlight_preference: preferences["sunlight"],
+                demographics_preference: preferences["demographics"],
+                salary_preference: preferences["salary"],
+                pto_preference: preferences["pto"]
+            })
+        }).then(async data => {
+            if (data.status == 200||data.status == 201) {
+                console.log("success");
+                window.location.href = "/";
+            } else {
+                console.log("fail");
+                console.log(data);
+                alert("Update Failed")
+            }
+
+        }).catch(err => console.log('err')));
     };
 
 
