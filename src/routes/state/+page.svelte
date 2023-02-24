@@ -1,6 +1,29 @@
 <script lang="ts">
 	import { Button} from 'flowbite-svelte';
 	import { Heading, Label} from 'flowbite-svelte';
+
+	let onSubmit = async () => {
+		console.log("submit");
+		var state = document.getElementsByName("enterdState")[0].value;
+		console.log(state);
+		var url = "https://salarymatch.azurewebsites.net/api/states/search/" + state;
+		const post = (await fetch(url, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		}).then(async data => {
+			console.log(await data.json());
+			if (data.status == 200||data.status == 201) {
+				console.log("success");
+				// window.location.href = "/state/" + data.id;
+			} else {
+				console.log("fail");
+				alert("State Submission Failed")
+			}
+
+		}).catch(err => console.log('err')));
+	}
 </script>
 
 <main>
@@ -8,6 +31,16 @@
 		<Heading tag="h2" customSize="text-3xl font-bold ">Select A State</Heading>	
 	</div>
 	<div class= 'stateOptions'>
+		<div class='child1'>
+			<form>
+				<input type="text" name="enterdState" placeholder="Enter State" />
+				<div class="button">
+					<button on:click={onSubmit}>
+						<p>Submit</p>
+					</button>
+				</div>
+			</form>
+		</div>
 		<div class='child1'>
             <Button href="/state/6ed4a3bd-4c9a-4a3f-a6f6-ebbb5c7ae27a">California</Button>
 		</div>
@@ -44,4 +77,24 @@
         align-items: center;
         justify-content: center;
 	}
+	.card {
+        width: 100%;
+        background-color: green;
+        display: flex;
+        padding: 30px;
+        background-color: var(--card-color);
+        box-shadow: 2px 2px 4px 0px rgba(34, 17, 66,0.4);
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .button {
+        background-color:rgb(142, 134, 230);
+        padding: 5px;
+        border-radius: 4px;
+        box-shadow: 1px 1px 3px 0px rgba(34, 17, 66,0.4);
+        margin: 8px;
+        margin-left: 100px;
+        margin-right: 100px;
+    }
 </style>
