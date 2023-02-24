@@ -3,6 +3,7 @@
 	import 'flowbite/dist/flowbite.css';
 	import './styles.css';
 	import '../app.postcss';
+	//
 </script>
 
 <link
