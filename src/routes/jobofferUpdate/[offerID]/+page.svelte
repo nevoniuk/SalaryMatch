@@ -7,13 +7,13 @@
 </script>
 
 <svelte:head>
-	<title>Job Offer Page</title>
+	<title>Update Job Offer Page</title>
 	<meta name="description" content="Form to Input Job Offer" />
 </svelte:head>
  
 <main>
 	<div class = 'title'>
-		<Heading tag="h2" customSize="text-3xl font-bold ">Update Your Offer For {offerData.company}</Heading>	
+		<Heading tag="h2" customSize="text-3xl font-bold ">Update Your Offer</Heading>	
 	</div>
 	<div class= 'gridL'>
 		<div class='child1'>

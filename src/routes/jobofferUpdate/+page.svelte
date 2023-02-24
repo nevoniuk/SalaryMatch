@@ -28,7 +28,10 @@
 							</p>
 						</div>
 						<div class="editbutton">
-							<span class="material-symbols-outlined orange-hover"> edit_square </span>
+							<span class="material-symbols-outlined orange-hover">
+								<a href="/jobofferUpdate/{offer.id}">edit_square
+								</a>
+							 </span>
 						</div>
 					</div>
 					<div class="offeritem">

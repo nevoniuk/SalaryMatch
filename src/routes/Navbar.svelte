@@ -85,13 +85,14 @@
     </div>
     <div class="navItem">
         <p class="nav-text orange-hover">
-            <a href="/jobofferUpdate"> Add Offer
+            <a href="/createjoboffer"> Add Offer
             </a>
         </p>
     </div>
     <div class="navItem">
         <p class="nav-text orange-hover">
-            Other Thing 
+        <a href="/jobofferUpdate"> View/Update Offers
+            </a> 
         </p>
     </div>
     <div class="navItem profile-icon rightSideFlex">
