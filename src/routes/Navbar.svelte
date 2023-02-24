@@ -119,6 +119,11 @@
             <a href="/state"> States</a>
         </p>
     </div>
+    <div class="navItem">
+        <p class="nav-text orange-hover">
+            <a href="/profile"> Profile</a>
+        </p>
+    </div>
     {#if loggedIn}
         <Avatar id="profile-pic" src="https://picsum.photos/200" alt="" class="rounded-full w-[50px] h-[50px] cursor-pointer"/>
         <!-- Dropdown menu -->
