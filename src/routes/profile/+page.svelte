@@ -25,6 +25,7 @@
     let onSave = () => {
         // save each item in preferences
         // note that every kind of preference (e.g., "pto") might not be in it
+        console.log(preferences["temperature"]);
     };
 
 
