@@ -91,7 +91,12 @@
     </div>
     <div class="navItem">
         <p class="nav-text orange-hover">
-            <a href="/CityOptions"> Other Thing</a>
+            <a href="/CityOptions"> Cities</a>
+        </p>
+    </div>
+    <div class="navItem">
+        <p class="nav-text orange-hover">
+            <a href="/companies"> Companies</a>
         </p>
     </div>
     <div class="navItem profile-icon rightSideFlex">
