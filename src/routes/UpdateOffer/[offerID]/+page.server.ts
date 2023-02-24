@@ -35,18 +35,18 @@ export const actions = {
 		{
 			method: 'POST',
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+				"Authorization": `Bearer ${userID}`
 			},
 			body: JSON.stringify({
-				id: id,
 				RSU: rsu,
 				signing_bonus: bonus,
 				relocation_bonus: relocation,
 				title: title,
 				salary: salary,
 				company: company,
-				city: city,
-				state: state
+				city_id: city,
+				state_id: state
 			})
 		}).then((res) => {
 			if (res.status != 200) {

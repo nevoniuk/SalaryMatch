@@ -5,13 +5,20 @@
 	/** @type {import('./$types').PageData} */
 	export let data;
 	import {authToken} from '../../auth'
+	console.log($authToken);
+	let url = 'https://salarymatch.azurewebsites.net/api/joboffers';
 	async function loading() {
-		const response = await fetch(`https://salarymatch.azurewebsites.net/api/joboffers`);
+		const response = await fetch(url, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				"Authorization": "Bearer " + $authToken
+			}
+		});
 		const data  = await response.json();
 		console.log(data);
 		return data;
 	}
-	
 </script>
 
 <svelte:head>
@@ -51,7 +58,7 @@
 						</div>
 						<div class="offeritem">
 							<p>
-								Location: {offer.city}, {offer.state}
+								Location: {offer.city_id}, {offer.state_id}
 							</p>
 						</div>
 						<div class="offeritem">

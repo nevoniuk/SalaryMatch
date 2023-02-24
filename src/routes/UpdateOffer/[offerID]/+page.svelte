@@ -4,16 +4,25 @@
 	import { page } from '$app/stores';
 	export let form;
 	import {authToken} from '../../../auth'
+	let url = 'https://salarymatch.azurewebsites.net/api/joboffers';
 	async function loading() {
-		const response = await fetch(`https://salarymatch.azurewebsites.net/api/joboffers`);
+		const response = await fetch(url, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				"Authorization": "Bearer " + $authToken
+			}
+		});
 		const data  = await response.json();
 		for (let i = 0; i < data.length; i++) {
 			if (data[i].id == $page.params.offerID) {
 				return data[i];
 			}
 		}
+		console.log(data);
 		return data;
 	}
+	
 </script>
 
 <svelte:head>
@@ -56,10 +65,10 @@
 		<div class= 'gridR'>
 			{#await loading() then data}
 				<div class='child2'>
-					<Input size="sm" placeholder="{data.city}" name="city"/>
+					<Input size="sm" placeholder="{data.city_id}" name="city"/>
 				</div>
 				<div class='child2'>
-					<Input size="sm" placeholder="{data.state}" name="state"/>
+					<Input size="sm" placeholder="{data.state_id}" name="state"/>
 				</div>
 				<div class='child2'>
 					<Input size="sm" placeholder="{data.title}" name="title"/>

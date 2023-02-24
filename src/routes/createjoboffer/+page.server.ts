@@ -7,13 +7,21 @@ export const actions = {
 		const userID = data.get('userID');
 		console.log(userID);
 		const city = data.get('city');
+		console.log(city);
 		const company = data.get('company');
+		console.log(company);
 		const salary = data.get('salary');
+		console.log(salary);
 		const bonus = data.get('bonus');
+		console.log(bonus);
 		const relocation = data.get('relocation');
+		console.log(relocation);
 		const title = data.get('title');
+		console.log(title);
 		const state = data.get('state');
+		console.log(state);
 		const rsu = data.get('rsu');
+		console.log(rsu);
 		if (!city) {
 			return fail(400, { city, missing: true });
 		}
@@ -34,7 +42,7 @@ export const actions = {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				"Authorization": `Bearer {$userID}`
+				"Authorization": `Bearer ${userID}`
 			},
 			body: JSON.stringify({
 				RSU: rsu,
@@ -43,8 +51,8 @@ export const actions = {
 				title: title,
 				salary: salary,
 				company: company,
-				city: city,
-				state: state
+				city_id: city,
+				state_id: state
 			})
 		}).then((res) => {
 			if (res.status != 200) {
