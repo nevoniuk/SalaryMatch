@@ -78,7 +78,8 @@
 		<img src="/salary_match_logo.png" alt="" />
     </div>
     <div class="navItem">
-        <span class="material-symbols-outlined orange-hover"> home </span>
+        <span class="material-symbols-outlined orange-hover"> <a href="/login">home
+            </a></span>
     </div>
     <div class="navItem">
         <span class="material-symbols-outlined orange-hover"> search </span>
@@ -91,7 +92,7 @@
     </div>
     <div class="navItem">
         <p class="nav-text orange-hover">
-        <a href="/jobofferUpdate"> View/Update Offers
+        <a href="/UpdateOffer"> View/Update Offers
             </a> 
         </p>
     </div>

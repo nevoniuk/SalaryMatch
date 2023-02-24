@@ -1,8 +1,17 @@
 <script>
 	import { Heading, P, A, Label, Input } from 'flowbite-svelte'
+	import { onMount } from 'svelte';
+	import { get } from 'svelte/store'
+	/** @type {import('./$types').PageData} */
 	export let data;
-	const { jobOfferData } = data;
-	console.log(data);
+	import {authToken} from '../../auth'
+	async function loading() {
+		const response = await fetch(`https://salarymatch.azurewebsites.net/api/joboffers`);
+		const data  = await response.json();
+		console.log(data);
+		return data;
+	}
+	
 </script>
 
 <svelte:head>
@@ -15,52 +24,54 @@
 		<Heading tag="h2" customSize="text-3xl font-bold ">Update Your Job Offers</Heading>	
 	</div>
 	<div class = 'subtitle'>
-		<Heading tag="h6" customSize="text-lg font-bold ">Select An Offer to Update</Heading>	
+		<Heading tag="h6" customSize="text-lg font-normal ">Select An Offer to Update</Heading>	
 	</div>
 	<div class= "slidercontainer">
 		<div class="slider">
-			{#each jobOfferData as offer}
-				<section>
-					<div class= "titleAndEdit">
+			{#await loading() then data}
+				{#each data as offer}
+					<section>
+						<div class= "titleAndEdit">
+							<div class="offeritem">
+								<p>
+									Title: {offer.title}
+								</p>
+							</div>
+							<div class="editbutton">
+								<span class="material-symbols-outlined orange-hover">
+									<a href="/UpdateOffer/{offer.id}">edit_square
+									</a>
+								</span>
+							</div>
+						</div>
 						<div class="offeritem">
 							<p>
-								Title: {offer.title}
+								Company: {offer.company}
 							</p>
 						</div>
-						<div class="editbutton">
-							<span class="material-symbols-outlined orange-hover">
-								<a href="/jobofferUpdate/{offer.id}">edit_square
-								</a>
-							 </span>
+						<div class="offeritem">
+							<p>
+								Location: {offer.city}, {offer.state}
+							</p>
 						</div>
-					</div>
-					<div class="offeritem">
-						<p>
-							Company: {offer.company}
-						</p>
-					</div>
-					<div class="offeritem">
-						<p>
-							Location: {offer.city}, {offer.state}
-						</p>
-					</div>
-					<div class="offeritem">
-						<p>
-							Salary: {offer.salary}
-						</p>
-					</div>
-					<div class="offeritem">
-						<p>
-							Sign-on bonus: {offer.signing_bonus}
-						</p>
-					</div>
-					<div class="offeritem">
-						<p>
-							Relocation Bonus: {offer.relocation_bonus}
-						</p>
-					</div>
-				</section>
-			{/each}
+						<div class="offeritem">
+							<p>
+								Salary: {offer.salary}
+							</p>
+						</div>
+						<div class="offeritem">
+							<p>
+								Sign-on bonus: {offer.signing_bonus}
+							</p>
+						</div>
+						<div class="offeritem">
+							<p>
+								Relocation Bonus: {offer.relocation_bonus}
+							</p>
+						</div>
+					</section>
+				{/each}
+			{/await}
 		</div>
 	</div>
 	

@@ -1,33 +1,10 @@
 <script>
 	import { Button,Chevron, Dropdown, DropdownItem, DropdownDivider, DropdownHeader } from 'flowbite-svelte'
 	import { Heading, P, A, Label, Input } from 'flowbite-svelte'
-	let selected;
-	let result = null;
-	let city = 'Santa Monica, CA';
-	let company = 'Google';
-	let salary = '110000';
-	let bonus = '10000';
-	let relocation = '5000';
 	export let form;
-	async function doPost () {
-		const res = await fetch('https://httpbin.org/post', {
-			method: 'POST',
-			headers: {
-                'Content-Type': 'application/json'
-            },
-			body: JSON.stringify({
-				city,
-				company,
-				salary,
-				bonus,
-				relocation
-			})
-		})
-		
-		const json = await res.json();
-		result = JSON.stringify(json);
-	}
-	
+	import {authToken} from '../../auth'
+	import { onMount } from 'svelte';
+	console.log($authToken);
 </script>
 
 <svelte:head>
@@ -69,28 +46,31 @@
 	<form method="POST" action="?/create">
 		<div class= 'gridR'>
 			<div class='child2'>
-					<Input size="sm" placeholder="Santa Monica, CA" name="city"/>
+					<Input size="sm" placeholder="ex) Santa Monica" name="city"/>
 			</div>
 			<div class='child2'>
-				<Input size="sm" placeholder="CA" name="state"/>
+				<Input size="sm" placeholder="ex) CA" name="state"/>
 			</div>
 			<div class='child2'>
-				<Input size="sm" placeholder="Software Engineer" name="title"/>
+				<Input size="sm" placeholder="ex) Software Engineer" name="title"/>
 			</div>
 			<div class='child2'>
-					<Input size="sm" placeholder="Google" name="company" />
+					<Input size="sm" placeholder="ex) Google" name="company" />
 				</div>
 			<div class='child2'>
-					<Input size="sm" placeholder="110000" name="salary" />
+					<Input size="sm" placeholder="ex) 110000" name="salary" />
 				</div>
 			<div class='child2'>
-					<Input size="sm" placeholder="10000" name="bonus" />
+					<Input size="sm" placeholder="ex) 10000" name="bonus" />
 				</div>
 			<div class='child2'>
-					<Input size="sm" placeholder="5000" name="relocation" />
+					<Input size="sm" placeholder="ex) 5000" name="relocation" />
 				</div>
 			<div class='child2'>
-					<Input size="sm" placeholder="5000" name="rsu"/>
+					<Input size="sm" placeholder="ex) 5000" name="rsu"/>
+			</div>
+			<div class='child2'>
+				<Input size="sm" type="hidden" value={$authToken} name="userID"/>
 			</div>
 		</div>
 		<div class= 'submitButton'>

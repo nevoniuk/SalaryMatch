@@ -3,9 +3,9 @@ import { fail } from '@sveltejs/kit';
 /** @type {import('./$types').Actions} */
 export const actions = {
 	create: async ({request} : RequestEvent) => {
-		// TODO obtain id
 		const data = await request.formData();
-		const id = "100";
+		const userID = data.get('userID');
+		console.log(userID);
 		const city = data.get('city');
 		const company = data.get('company');
 		const salary = data.get('salary');
@@ -33,10 +33,10 @@ export const actions = {
 		{
 			method: 'POST',
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+				"Authorization": `Bearer {$userID}`
 			},
 			body: JSON.stringify({
-				id: id,
 				RSU: rsu,
 				signing_bonus: bonus,
 				relocation_bonus: relocation,
