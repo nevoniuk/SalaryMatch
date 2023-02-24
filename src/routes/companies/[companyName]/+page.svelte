@@ -23,7 +23,16 @@
                 comment: comment,
                 is_anonymous: is_anonymous
             })
-        }));
+        }).then(async data => {
+            if (data.status == 200||data.status == 201) {
+                console.log("success");
+                window.location.href = "/companies/" + company_id;
+            } else {
+                console.log("fail");
+                alert("Review Submission Failed")
+            }
+
+        }).catch(err => console.log('err')));
     };
 </script>
 
