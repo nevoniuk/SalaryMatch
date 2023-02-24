@@ -1,3 +1,37 @@
+<script>
+    import {authToken} from '../../auth'
+    let onSignIn = async () => {
+        console.log("Sign I???n");
+        var id = document.getElementsByName("id")[0].value;
+        var password = document.getElementsByName("password")[0].value;
+        var token;
+        console.log(id, password);
+        const post = (await fetch("https://salarymatch.azurewebsites.net/api/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                id: id,
+                password: password
+            })
+        }).then(async data => {
+            token = await data.text()
+            if (data.status == 200||data.status == 201) {
+                authToken.set(token)
+                console.log("success");
+                console.log(token)
+                window.location.href = "/";
+            } else {
+                console.log("fail");
+                alert("Login Failed")
+            }
+
+        }).catch(err => console.log('err')));
+    }; 
+
+
+</script>
 <style>
 
     .login.card {
@@ -74,7 +108,7 @@
                 person
             </span>
         </div>
-        <input>
+        <input name="id">
     </form>
     <form>
         <div class="icon-container">
@@ -82,20 +116,24 @@
                 key
             </span>
         </div>
-        <input>
+        <input name="password">
     </form>
 
     <div class="bigger button">
-        <p>
-            Sign In
-        </p>
+        <button on:click={onSignIn}>
+            <p>Sign In</p>
+        </button>
     </div>
     <div class="other-buttons-container">
         <div class="button">
             <p>Forgot Password</p>
         </div>
         <div class="button">
-            <p>Create Account</p>
+            <a href="/signup">Create Account</a>
         </div>
+    </div>
+    <div class="flex flex-col items-center">
+        <div class="text-base">First time?</div>
+        <a href="/signup"><Button gradient color="purpleToBlue" size="md" class="w-full">Sign Up</Button></a>
     </div>
 </div>

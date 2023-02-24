@@ -1,3 +1,7 @@
+<script>
+    import { Button } from "flowbite-svelte";
+</script>
+
 <style>
 
     .login-card {
@@ -51,7 +55,7 @@
         margin-left: 30px;
         margin-right: 30px;
     }
-    .button > p {
+    /* .button > p {
         font-size: 12px;
         font-weight: bold;
     }
@@ -61,7 +65,7 @@
     }
     .bigger >  p {
         font-size: 16px;
-    }
+    } */
 </style>
 <div style="height:100px"></div>
 
@@ -90,6 +94,11 @@
                 Sign Up
             </p>
         </button>
+    </div>
+
+    <div class="flex flex-col items-center">
+        <div>Already done this?</div>
+        <a href="/login"><Button gradient color="redToYellow" size="md" class="w-full">Log In</Button></a>
     </div>
 
 </div>
