@@ -1,8 +1,31 @@
 <script>
 	import './styles.css';
     import { Avatar, Button, Dropdown, DropdownItem, Search } from 'flowbite-svelte';
-
+    import {authToken} from '../auth'
     let loggedIn = false;
+    let logout = async () => {
+    console.log(id, password);
+    const post = (await fetch("https://salarymatch.azurewebsites.net/api/logout", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            id: ${authToken}
+        })
+    }).then(async data => {
+        
+        if (data.status == 200||data.status == 201) {
+            window.location.href = "/";
+            console.log(res);
+        } else {
+            console.log("fail");
+            alert("Login Failed")
+        }
+
+        }).catch(err => console.log('err')));
+    }; 
+
 </script>
 
 <style>
@@ -129,7 +152,7 @@
         <!-- Dropdown menu -->
         <Dropdown placement="bottom" triggeredBy="#profile-pic">
             <DropdownItem><a href="/profile">My Profile</a></DropdownItem>
-            <DropdownItem on:click={() => loggedIn = false}><a href="/">Log Out</a></DropdownItem>
+            <DropdownItem on:click={logout}><a href="/">Log Out</a></DropdownItem>
         </Dropdown>
     {:else}
         <a href="/login"><Button gradient color="cyanToBlue" size="xs" on:click={() => loggedIn = true} >Log In</Button></a>
