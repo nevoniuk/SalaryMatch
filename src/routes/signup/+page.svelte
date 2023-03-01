@@ -29,7 +29,7 @@
         console.log(id, password);
 
         console.log(preferences["temperature"], preferences["humidity"], preferences["sunlight"], preferences["demographics"], preferences["salary"], preferences["pto"]);
-        const post = (await fetch("https://salarymatch.azurewebsites.net/api/users", {
+        const post = (await fetch("http://localhost:7071/api/users", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
