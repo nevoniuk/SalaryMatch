@@ -40,7 +40,7 @@
                 temperature_preference: preferences["temperature"],
                 humidity_preference: preferences["humidity"],
                 sunlight_preference: preferences["sunlight"],
-                demographics_preference: preferences["demographics"],
+                demographic_preference: preferences["demographics"],
                 salary_preference: preferences["salary"],
                 pto_preference: preferences["pto"]
             })
