@@ -1,7 +1,21 @@
 <script>
 	import PopulationBar from "./PopulationBar.svelte";
-
+    import Menu from "../../Menu.svelte";
     export let data;
+    let options = ["Calculated from the following food amounts and units: fresh orange juice (59 oz), white bread (24oz), sugar (4lb), frozen chicken dinner (8-10 oz), ground beef (1 lb), potatoes (5 lb), eggs (1 doz), whole milk (.5 gal)"];
+      //"fresh orange juice (59 oz)", "white bread (24oz), sugar (4lb), frozen chicken dinner (8-10 oz)"
+      //"frozen chicken dinner (8-10 oz), ground beef (1 lb), potatoes (5 lb)", "eggs (1 doz),
+      //whole milk (.5 gal)"
+    let menuDropped = false;
+    let menuclicked = () => {
+        if (menuDropped == true) {
+            $: menuDropped = false;
+        }
+        else {
+            $: menuDropped = true;
+        }
+    }
+    console.log(menuDropped);
 </script>
 
 <style>
@@ -33,6 +47,14 @@
         height: 250px;
         margin-right: 20px;
     }
+    .groceries {
+        display: flex;
+		flex-wrap: wrap;
+    }
+    .material-symbols-outlined {
+        font-size: 15px;
+    }
+    
 
 </style>
 
@@ -44,6 +66,21 @@
     <div>
         Average rent: ${data.city.average_rent} / month
         <br>
+        <div class="groceries">
+            <div class="item">
+                <p>
+                    Average groceries: ${data.city.average_rent} / month
+                </p>
+            </div>
+            <div class="item">
+                <a on:click={() => menuclicked()}>
+                    <span class="material-symbols-outlined orange-hover"> help </span>
+                </a>
+            </div>
+            <div class="menu">
+                <Menu options={options} dropped={menuDropped} />
+            </div>
+        </div>
         Total Population: {Math.floor(data.city.total_population)}k People
         <br>
         <br>
