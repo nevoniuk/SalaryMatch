@@ -1,6 +1,6 @@
 <script>
 	import { fly } from 'svelte/transition';
-	import { Accordion, AccordionItem } from 'flowbite-svelte';
+	import { Button, Accordion, AccordionItem } from 'flowbite-svelte';
 
 	const _mainWords = ['$alary', 'Rent', 'Tax', 'Food', 'Gym', 'Community', 'City'];
 	let _mainWordsIndex = 0;
@@ -101,7 +101,15 @@
 	</AccordionItem>
 		</Accordion>
 	</div>
+	<div class="customerSupport">
+		<Button outline gradient color="purpleToBlue">
+			Need Help?<a href="/customerSupport"><span class="material-symbols-outlined orange-hover">contact_support</span></a>
+		</Button>
+	</div>
 </div>
 
 <style>
+	.customerSupport {
+		margin-left: 1100px;
+	}
 </style>
