@@ -4,6 +4,7 @@
 	import { Textarea } from 'flowbite-svelte'
 	let textareaprops = {
 		placeholder: 'Leave a comment...',
+		rows: 10
 	};
 </script>
 
@@ -18,7 +19,7 @@
 	</div>
 	<div class="right">
 		<div class= "scroll">
-			<div class = "item">
+			<div class="item">
 				<div class="mb-6">
 					<Label for="input-group-1" class="block mb-2">Your Email</Label>
 					<Input id="email" type="email" placeholder="name@gmail.com">
@@ -26,15 +27,16 @@
 					</Input>
 				</div>
 			</div>
-			<div class = "item">
+			<div class="item">
 				<Label class='block mb-2' >First name</Label>
 				<Input label="Email" id="email" name="email" required placeholder=""/>
 			</div>
-			<div class = "item">
+			<div class="item">
 				<Label class='block mb-2' >Last name</Label>
 				<Input label="Email" id="email" name="email" required placeholder=""/>
 			</div>
 			<div class="textarea">
+				<Label class='block mb-2' >Please Leave Your Feedback/Questions Below</Label>
 				<Textarea {...textareaprops}/>
 			</div>
 		</div>
@@ -46,6 +48,7 @@
 		position:relative;
 		background-image: linear-gradient(to right, var(--card-color), white);
 		height: 150px;
+		border-radius: 5px;
 	}
 	.header {
 		position:absolute;
@@ -60,32 +63,46 @@
         margin: 100px;
         margin-left: 30px;
         margin-right: 30px;
-        padding-bottom: 60px;
+        //padding-bottom: 60px;
         padding-top: 40px;
-		height: 400px;
+		border-radius: 5px;
 		background-color: rgb(188, 181, 223)
     }
 	
 	.left {
-
+		background-image: linear-gradient(to bottom, var(--card-color), white);
+		border-radius: 5px;
 	}
+
 	.right {
-		display: flexbox;
+		display: grid;
         align-items: center;
         justify-content: center;
-        flex-direction: column;
+        flex-direction: row;
 		grid-template-columns: unset;
         grid-template-rows: unset;
 	}
+
 	.scroll {
-		min-height: 60%;
-		//scroll-snap-type: y mandatory;	
-		display: flex;
+		scroll-snap-type: y mandatory;	
 		-webkit-overflow-scrolling: touch;
-		overflow-y: auto;
-		overflow-x:hidden
+		overflow: auto;
 	}
+
+	.item {
+		margin-top: 30px;
+		scroll-snap-align: start;
+		text-align: center;
+		position: relative;
+		width: 300px;
+	}
+	
 	.textarea {
-		height: 200px;
+		margin-top: 30px;
+		height: 100px;
+		scroll-snap-align: start;
+		text-align: center;
+		position: relative;
 	}
+
 </style>
