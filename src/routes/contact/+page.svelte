@@ -9,6 +9,9 @@
 	</div>
 </div>
 <div class="card">
+	<div class="left">
+		<Label class='block mb-2'>example</Label>
+	</div>
 	<div class="right">
 		<div class = "item">
 			<div class="mb-6">
@@ -27,9 +30,6 @@
 			<Input label="Email" id="email" name="email" required placeholder=""/>
 		</div>
 	</div>
-	<div class="left">
-		<Label class='block mb-2' >example</Label>
-	</div>
 </div>
 
 <style>
@@ -46,20 +46,25 @@
 		left: 42%;
 	}
 	.card {
-        display: flex;
-        align-items: center;
-        align-self: center;
-        justify-content: center;
-        flex-direction: column;
+        display: grid;
+		grid-template-columns: 1fr 1fr;
         margin: 100px;
         margin-left: 30px;
         margin-right: 30px;
         padding-bottom: 60px;
         padding-top: 40px;
-		height: 300px;
+		height: 400px;
 		background-color: rgb(188, 181, 223)
     }
-	.grid {
-		
+	
+	.left {
+	}
+	.right {
+		display: flexbox;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+		grid-template-columns: unset;
+        grid-template-rows: unset;
 	}
 </style>
