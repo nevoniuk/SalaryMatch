@@ -1,6 +1,10 @@
 <script>
 	import {Heading} from 'flowbite-svelte'
 	import { Label, Input } from 'flowbite-svelte'
+	import { Textarea } from 'flowbite-svelte'
+	let textareaprops = {
+		placeholder: 'Leave a comment...',
+	};
 </script>
 
 <div class="background">
@@ -13,21 +17,26 @@
 		<Label class='block mb-2'>example</Label>
 	</div>
 	<div class="right">
-		<div class = "item">
-			<div class="mb-6">
-				<Label for="input-group-1" class="block mb-2">Your Email</Label>
-				<Input id="email" type="email" placeholder="name@gmail.com">
-					<svg slot="left" aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-				</Input>
+		<div class= "scroll">
+			<div class = "item">
+				<div class="mb-6">
+					<Label for="input-group-1" class="block mb-2">Your Email</Label>
+					<Input id="email" type="email" placeholder="name@gmail.com">
+						<svg slot="left" aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+					</Input>
+				</div>
 			</div>
-		</div>
-		<div class = "item">
-			<Label class='block mb-2' >First name</Label>
-			<Input label="Email" id="email" name="email" required placeholder=""/>
-		</div>
-		<div class = "item">
-			<Label class='block mb-2' >Last name</Label>
-			<Input label="Email" id="email" name="email" required placeholder=""/>
+			<div class = "item">
+				<Label class='block mb-2' >First name</Label>
+				<Input label="Email" id="email" name="email" required placeholder=""/>
+			</div>
+			<div class = "item">
+				<Label class='block mb-2' >Last name</Label>
+				<Input label="Email" id="email" name="email" required placeholder=""/>
+			</div>
+			<div class="textarea">
+				<Textarea {...textareaprops}/>
+			</div>
 		</div>
 	</div>
 </div>
@@ -58,6 +67,7 @@
     }
 	
 	.left {
+
 	}
 	.right {
 		display: flexbox;
@@ -66,5 +76,16 @@
         flex-direction: column;
 		grid-template-columns: unset;
         grid-template-rows: unset;
+	}
+	.scroll {
+		min-height: 60%;
+		//scroll-snap-type: y mandatory;	
+		display: flex;
+		-webkit-overflow-scrolling: touch;
+		overflow-y: auto;
+		overflow-x:hidden
+	}
+	.textarea {
+		height: 200px;
 	}
 </style>
