@@ -1,6 +1,8 @@
 <script>
     import { Button } from 'flowbite-svelte';
     import {authToken} from '../../auth'
+    import {loggedIn} from '../../auth'
+    let logged = true;
     let onSignIn = async () => {
         console.log("Sign I???n");
         var id = document.getElementsByName("id")[0].value;
@@ -20,6 +22,7 @@
             token = await data.text()
             if (data.status == 200||data.status == 201) {
                 authToken.set(token)
+                loggedIn.set(logged);
                 console.log("success");
                 console.log(token)
                 window.location.href = "/";

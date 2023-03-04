@@ -4,10 +4,8 @@
     import {authToken} from '../auth'
     import {loggedIn} from '../auth'
     let notlogged = false;
-    let logged = true;
-
+    let noToken="";
     let logout = async () => {
-        loggedIn.set(notlogged);
         const post = (await fetch("https://salarymatch.azurewebsites.net/api/logout", {
         method: "POST",
         headers: {
@@ -19,6 +17,8 @@
     }).then(async data => {
         if (data.status == 200||data.status == 201) {
             console.log("successful logout");
+            loggedIn.set(notlogged);
+            authToken.set(noToken);
             window.location.href = "/";
         } else {
             console.log("fail");
@@ -154,6 +154,6 @@
             <DropdownItem on:click={logout}><a href="/">Log Out</a></DropdownItem>
         </Dropdown>
     {:else}
-        <a href="/login"><Button gradient color="cyanToBlue" size="xs" on:click={() => loggedIn.set(logged)} >Log In</Button></a>
+        <a href="/login"><Button gradient color="cyanToBlue" size="xs">Log In</Button></a>
     {/if}
 </nav>
