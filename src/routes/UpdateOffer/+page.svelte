@@ -33,7 +33,7 @@
 	<div class = 'subtitle'>
 		<Heading tag="h6" customSize="text-lg font-normal ">Select An Offer to Update</Heading>	
 	</div>
-	<div class= "slidercontainer">
+	<div  class= "slidercontainer">
 		<div class="slider">
 			{#await loading() then data}
 				{#each data as offer}
