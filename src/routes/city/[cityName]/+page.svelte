@@ -1,7 +1,10 @@
 <script>
 	import PopulationBar from "./PopulationBar.svelte";
-
+    import WeatherGraph from "./WeatherGraph.svelte";
+    import {Heading} from 'flowbite-svelte';
     export let data;
+    let months = [38, 29, 19, 59, 39, 20, 33, 44, 55, 45, 33, 22];
+    let temp = 38;
 </script>
 
 <style>
@@ -33,6 +36,16 @@
         height: 250px;
         margin-right: 20px;
     }
+    .demographics {
+        margin-right: 30px;
+    }
+    .weather {
+        display: flex;
+        align-content: space-between;
+        margin-top: 50px;
+    }
+    .graph {margin-right: 20px;}
+    .temp {font-size: 20px;}
 
 </style>
 
@@ -41,7 +54,7 @@
     <!-- <div class="city-img-container"> -->
         <!-- <img class="city-img" src="https://via.placeholder.com/200"/> -->
     <!-- </div> -->
-    <div>
+    <div class="demographics">
         Average rent: ${data.city.average_rent} / month
         <br>
         Total Population: {Math.floor(data.city.total_population)}k People
@@ -53,5 +66,13 @@
         <PopulationBar subsetName="Asian American" subsetTotal={data.city.asian_american_population} total={data.city.total_population} />
         <PopulationBar subsetName="Pacific Islander" subsetTotal={data.city.pacific_islander_population} total={data.city.total_population} />
         <PopulationBar subsetName="Hispanic" subsetTotal={data.city.hispanic_population} total={data.city.total_population} />
+        <br>
+        <br>
+    </div>
+    <div class="weather">
+        <div class="graph">
+            <WeatherGraph months = {months} />
+        </div>
+       <h1 class="temp">{temp} degrees</h1>
     </div>
 </div>
