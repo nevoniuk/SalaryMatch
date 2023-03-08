@@ -15,8 +15,7 @@
 	console.log(datapoints[i]);
  }
 let monthNames = ["Jan", "Feb", "March", "April", "May", "June",
-  "July", "August", "Sept", "Oct", "Nov", "Dec"
-];
+  "July", "August", "Sept", "Oct", "Nov", "Dec"];
 let i = month - 1;
 let count = 0;
 let monthsOrder = [];
