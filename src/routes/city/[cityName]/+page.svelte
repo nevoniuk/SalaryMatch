@@ -5,6 +5,21 @@
     export let data;
     let months = [38, 29, 19, 59, 39, 20, 33, 44, 55, 45, 33, 22];
     let temp = 38;
+    let key = "a4db2bcce6e548158ec03035230603";
+    let url = `http://api.weatherapi.com/v1/current.json?key=${key}&q=${data.city.name}`;
+    async function loading() {
+		const response = await fetch(url, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			}
+		});
+		const weather  = await response.json();
+		console.log(weather);
+        console.log(weather["current"]);
+		return weather;
+	}
+   
 </script>
 
 <style>
@@ -37,7 +52,7 @@
         margin-right: 20px;
     }
     .demographics {
-        margin-right: 30px;
+        margin-right: 20px;
     }
     .weather {
         display: flex;
@@ -45,7 +60,10 @@
         margin-top: 50px;
     }
     .graph {margin-right: 20px;}
-    .temp {font-size: 20px;}
+    .temp {
+        font-size: 20px;
+        margin-right: 3px;
+    }
 
 </style>
 
@@ -73,6 +91,11 @@
         <div class="graph">
             <WeatherGraph months = {months} />
         </div>
-       <h1 class="temp">{temp} degrees</h1>
+       {#await loading() then weather}
+
+            <h1 class="temp">Today:</h1>
+            <h1 class="temp">{weather.current.temp_f}</h1>
+            <h1 class="temp">deg fahrenheit</h1>
+       {/await}
     </div>
 </div>
