@@ -10,7 +10,9 @@ export const actions = {
 		console.log(email);
 		const message = data.get('message');
 		console.log(message);
-		const userID = data.get('userID');
+		console.log("llll");
+		console.log(firstname);
+		console.log(lastname);
 		if (!firstname) {
 			return fail(400, { firstname, missing: true });
 		}
@@ -23,12 +25,11 @@ export const actions = {
 		if (!message) {
 			return fail(400, { message, missing: true });
 		}
-		const post =  await fetch(``,
+		const post =  await fetch(`https://salarymatch.azurewebsites.net/api/userfeedback`,
 		{
 			method: 'POST',
 			headers: {
-				'Content-Type': 'application/json',
-				"Authorization": `Bearer ${userID}`
+				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
 				firstname: firstname,
