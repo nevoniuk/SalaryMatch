@@ -1,6 +1,6 @@
 <script>
  import {authToken} from '../../../auth';
- export let months; //jan-dec
+ export let months; // months jan-dec
  let monthNames = ["Jan", "Feb", "March", "April", "May", "June",
   "July", "August", "Sept", "Oct", "Nov", "Dec"];
  let max = 0;
