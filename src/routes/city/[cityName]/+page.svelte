@@ -3,7 +3,9 @@
     import WeatherGraph from "./WeatherGraph.svelte";
     import {Heading} from 'flowbite-svelte';
     export let data;
-    let months = [38, 29, 19, 59, 39, 20, 33, 44, 55, 45, 33, 22];
+    let months = [data.city.avg_temp_jan, data.city.avg_temp_feb, data.city.avg_temp_march, data.city.avg_temp_april,
+            data.city.avg_temp_may, data.city.avg_temp_june, data.city.avg_temp_july, data.city.avg_temp_aug, data.city.avg_temp_sept,
+            data.city.avg_temp_oct, data.city.avg_temp_nov, data.city.avg_temp_dec];
     let temp = 38;
     let key = "a4db2bcce6e548158ec03035230603";
     let url = `http://api.weatherapi.com/v1/current.json?key=${key}&q=${data.city.name}`;
@@ -15,7 +17,6 @@
 			}
 		});
 		const weather  = await response.json();
-		console.log(weather);
         console.log(weather["current"]);
 		return weather;
 	}

@@ -1,34 +1,33 @@
 <script>
  import {authToken} from '../../../auth';
- export let months;
+ export let months; //jan-dec
+ let monthNames = ["Jan", "Feb", "March", "April", "May", "June",
+  "July", "August", "Sept", "Oct", "Nov", "Dec"];
  let max = 0;
  const d = new Date();
  let month = d.getMonth();
+
  for (let i = 0; i < months.length; i++) {
 	if (months[i] > max) {
 		max = months[i];
 	}
  }
- let datapoints = [];
- for (let i = 0; i < months.length; i++) {
-	datapoints[i] = (months[i] / max) * 200;
-	console.log(datapoints[i]);
- }
-let monthNames = ["Jan", "Feb", "March", "April", "May", "June",
-  "July", "August", "Sept", "Oct", "Nov", "Dec"];
-let i = month - 1;
+
+let i = month; //march 2022 - feb 2023
 let count = 0;
-let monthsOrder = [];
-let year = 1899 + d.getYear();
+let monthsInOrder = [];
+let dataInOrder = [];
+let year = 1899 + d.getYear(); //returns year - 1899
+
 while (count < 12) {
-	monthsOrder[count] = monthNames[i];
+	monthsInOrder[count] = monthNames[i];
+	dataInOrder[count] = (months[i] / max) * 200;
 	count++;
 	i=i+1;
 	if (i == monthNames.length) {
 		i = 0;
 	}
 }
-console.log(monthsOrder[11]);
 
 </script>
 <div class="container">
@@ -40,7 +39,7 @@ console.log(monthsOrder[11]);
 	<div class="graph-container">
 		<figure class="css-chart" style="--widget-size: 200px;">
 			<ul class="line-chart">
-				{#each datapoints as point, i}
+				{#each dataInOrder as point, i}
 					<li>
 						<div class="data-point" data-value={point} style="bottom: {point}px; margin-left: {i * 40}px;"></div>
 					</li>
@@ -48,7 +47,7 @@ console.log(monthsOrder[11]);
 			</ul>
 		</figure>
 		<div class="month-labels">
-			{#each monthsOrder as month}
+			{#each monthsInOrder as month}
 				<p style="margin-right: 24px;">{month}</p>
 			{/each}
 		</div>
