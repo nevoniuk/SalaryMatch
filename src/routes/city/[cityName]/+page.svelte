@@ -69,7 +69,7 @@
         <div class="groceries">
             <div class="item">
                 <p>
-                    Average groceries: ${data.city.average_rent} / month
+                    Average groceries: ${data.city.average_groceries_cost}
                 </p>
             </div>
             <div class="item">
