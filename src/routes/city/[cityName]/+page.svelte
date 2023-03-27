@@ -2,7 +2,7 @@
 	import PopulationBar from "./PopulationBar.svelte";
     import WeatherGraph from "./WeatherGraph.svelte";
     import Menu from "../../Menu.svelte";
-    import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell, Popover, Card } from "flowbite-svelte"
+    import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell, Popover, Card, Button, Dropdown, DropdownItem, Chevron, Checkbox} from "flowbite-svelte"
 
     import { Radar } from 'svelte-chartjs'
     import {
@@ -42,17 +42,6 @@
         console.log(weather["current"]);
 		return weather;
 	}
-    
-    let options = ["Calculated from the following food amounts and units: fresh orange juice (59 oz), white bread (24oz), sugar (4lb), frozen chicken dinner (8-10 oz), ground beef (1 lb), potatoes (5 lb), eggs (1 doz), whole milk (.5 gal)"];
-    let menuDropped = false;
-    let menuclicked = () => {
-        if (menuDropped == true) {
-            $: menuDropped = false;
-        }
-        else {
-            $: menuDropped = true;
-        }
-    }
 
     const utilitiesData = {
         labels: [
@@ -71,14 +60,59 @@
             },
         ],
     };
+
+    let totalCost = 0;
+    let rent = 1;
+    let groceries = 0;
+    let water = 0;
+    let trash = 0;
+    let gas = 0;
+    let internet = 0;
+    let utilities = 0;
+    let electricity = 0;
+    let options = []
+    let aggregateCosts = async () => {
+        
+    }
+    const selectOption = (option) => {
+        console.log(option)
+        if (options.includes(option)) {
+            let before = [];
+            let after = [];
+            for (let i = 0; i < options.length; i++) {
+                if (options[i] == option) {
+                    before = options.slice(0, i);
+                    console.log(before);
+                    after = options.slice(i+1);
+                    console.log(after);
+                    options = before.concat(after);
+                }
+            }
+        }
+        else {
+            options.push(option);
+        }
+        console.log(options);
+    }
 </script>
 
 <style>
+    .container {
+        display: flex;
+        width:100%;
+        justify-content: space-between;
+    }
+    
     .city-title {
         margin: 40px;
         margin-left: 60px;
         text-align: left;
         font-size: 40px;
+    }
+    .city-costs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .card {
@@ -122,7 +156,53 @@
     .material-symbols-outlined {
         font-size: 10px;
     }
+    .filters {
+        display:flex;
+        height: 20%;
+    }
+    .total {
+        height: 20%;
+        margin-right: 20px;
+    }
+
 </style>
+<div class="container">
+    <h1 class="city-title">{data.city.name}</h1>
+    <div class="city-costs">
+        <div class="total">
+             <p>Average cost of living per month: ${totalCost}</p>
+        </div>
+        <div class="filters">
+            <Button><Chevron>Filters</Chevron></Button>
+            <Dropdown class="w-48 overflow-y-auto py-1 h-48 text-sm">
+            <li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
+                <Checkbox>Groceries</Checkbox>
+            </li>
+            <li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
+                <Checkbox checked on:click={() => selectOption("rent")}>Rent</Checkbox>
+            </li>
+            <li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
+                <Checkbox on:click={() => selectOption("internet")}>Internet</Checkbox>
+            </li>
+            <li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
+                <Checkbox on:click={() => selectOption("taxes")}>State Taxes</Checkbox>
+            </li>
+            <li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
+                <Checkbox on:click={() => selectOption("utilities")}>Utilities</Checkbox>
+            </li>
+            <li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
+                <Checkbox on:click={() => selectOption("electricity")}>Electricity</Checkbox>
+            </li>
+            <li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
+                <Checkbox on:click={() => selectOption("trash")}>Trash</Checkbox>
+            </li>
+            <li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
+                <Checkbox on:click={() => selectOption("water")}>Water</Checkbox>
+            </li>
+            </Dropdown>
+        </div>
+    </div>
+</div>
 
 <div class="flex flex-col gap-5 mt-5">
     <div class="flex flex-row justify-around items-center">
