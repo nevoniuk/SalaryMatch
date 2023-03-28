@@ -32,8 +32,8 @@ export const actions = {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				firstname: firstname,
-				lastname: lastname,
+				first_name: firstname,
+				last_name: lastname,
 				email: email,
 		        message: message
 			})
