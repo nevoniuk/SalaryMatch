@@ -3,9 +3,6 @@
     import Menu from "../../Menu.svelte";
     export let data;
     let options = ["Calculated from the following food amounts and units: fresh orange juice (59 oz), white bread (24oz), sugar (4lb), frozen chicken dinner (8-10 oz), ground beef (1 lb), potatoes (5 lb), eggs (1 doz), whole milk (.5 gal)"];
-      //"fresh orange juice (59 oz)", "white bread (24oz), sugar (4lb), frozen chicken dinner (8-10 oz)"
-      //"frozen chicken dinner (8-10 oz), ground beef (1 lb), potatoes (5 lb)", "eggs (1 doz),
-      //whole milk (.5 gal)"
     let menuDropped = false;
     let menuclicked = () => {
         if (menuDropped == true) {
@@ -15,7 +12,6 @@
             $: menuDropped = true;
         }
     }
-    console.log(menuDropped);
 </script>
 
 <style>
@@ -69,7 +65,7 @@
         <div class="groceries">
             <div class="item">
                 <p>
-                    Average groceries: ${data.city.average_groceries_cost}
+                    Average groceries: ${data.city.average_groceries_cost * 8} / month
                 </p>
             </div>
             <div class="item">
