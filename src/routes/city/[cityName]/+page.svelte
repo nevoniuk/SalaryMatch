@@ -70,9 +70,10 @@
     let internet = 0;
     let utilities = 0;
     let electricity = 0;
-    let options = []
+    let options = [];
+    options.push("rent");
     let aggregateCosts = async () => {
-        
+        //onhold until data is available
     }
     const selectOption = (option) => {
         console.log(option)
