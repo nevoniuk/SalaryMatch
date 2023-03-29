@@ -65,6 +65,9 @@
         font-size: 20px;
         margin-right: 3px;
     }
+    .material-symbols-outlined {
+        font-size: 10px;
+    }
 
 </style>
 
@@ -96,7 +99,8 @@
 
             <h1 class="temp">Today:</h1>
             <h1 class="temp">{weather.current.temp_f}</h1>
-            <h1 class="temp">deg fahrenheit</h1>
+            <span class="material-symbols-outlined"> circle </span>
+            <h1 class="temp">Fahrenheit</h1>
        {/await}
     </div>
 </div>

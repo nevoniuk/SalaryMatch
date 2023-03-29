@@ -4,15 +4,18 @@
  let monthNames = ["Jan", "Feb", "March", "April", "May", "June",
   "July", "August", "Sept", "Oct", "Nov", "Dec"];
  let max = 0;
+ let min = months[0];
  const d = new Date();
  let month = d.getMonth();
-
  for (let i = 0; i < months.length; i++) {
 	if (months[i] > max) {
 		max = months[i];
 	}
+	if (months[i] < min) {
+		min = months[i];
+	}
  }
-
+ 
 let i = month; //march 2022 - feb 2023
 let count = 0;
 let monthsInOrder = [];
@@ -21,7 +24,8 @@ let year = 1899 + d.getYear(); //returns year - 1899
 
 while (count < 12) {
 	monthsInOrder[count] = monthNames[i];
-	dataInOrder[count] = (months[i] / max) * 200;
+	dataInOrder[count] = ((months[i] - min) / (max - min)) * 200;
+	console.log(dataInOrder[count]);
 	count++;
 	i=i+1;
 	if (i == monthNames.length) {
@@ -33,8 +37,7 @@ while (count < 12) {
 <div class="container">
 	<div class="temp-labels">
 		<p style="margin-top: 0px">{max}</p>
-		<p style="margin-top: 90px">{max / 2}</p>
-		<p style="margin-top: 90px">0</p>
+		<p style="margin-top: 200px">{min}</p>
 	</div>
 	<div class="graph-container">
 		<figure class="css-chart" style="--widget-size: 200px;">
@@ -92,6 +95,9 @@ while (count < 12) {
 		height: 15px;
 		position: absolute;
 		width: 15px;
+	}
+	data-point-value {
+		font-size: 10px;
 	}
 	.month-labels {
 		display:flex;
