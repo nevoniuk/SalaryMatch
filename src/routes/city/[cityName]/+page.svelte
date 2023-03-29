@@ -2,6 +2,7 @@
 	import PopulationBar from "./PopulationBar.svelte";
     import WeatherGraph from "./WeatherGraph.svelte";
     import {Heading} from 'flowbite-svelte';
+    import Menu from "../../Menu.svelte";
     export let data;
     let months = [data.city.avg_temp_jan, data.city.avg_temp_feb, data.city.avg_temp_march, data.city.avg_temp_april,
             data.city.avg_temp_may, data.city.avg_temp_june, data.city.avg_temp_july, data.city.avg_temp_aug, data.city.avg_temp_sept,
@@ -20,7 +21,17 @@
         console.log(weather["current"]);
 		return weather;
 	}
-   
+    
+    let options = ["Calculated from the following food amounts and units: fresh orange juice (59 oz), white bread (24oz), sugar (4lb), frozen chicken dinner (8-10 oz), ground beef (1 lb), potatoes (5 lb), eggs (1 doz), whole milk (.5 gal)"];
+    let menuDropped = false;
+    let menuclicked = () => {
+        if (menuDropped == true) {
+            $: menuDropped = false;
+        }
+        else {
+            $: menuDropped = true;
+        }
+    }
 </script>
 
 <style>
@@ -52,6 +63,11 @@
         height: 250px;
         margin-right: 20px;
     }
+    .groceries {
+        display: flex;
+		flex-wrap: wrap;
+    }
+    
     .demographics {
         margin-right: 20px;
     }
@@ -79,6 +95,21 @@
     <div class="demographics">
         Average rent: ${data.city.average_rent} / month
         <br>
+        <div class="groceries">
+            <div class="item">
+                <p>
+                    Average groceries: ${data.city.average_groceries_cost * 8} / month
+                </p>
+            </div>
+            <div class="item">
+                <a on:click={() => menuclicked()}>
+                    <span class="material-symbols-outlined orange-hover"> help </span>
+                </a>
+            </div>
+            <div class="menu">
+                <Menu options={options} dropped={menuDropped} />
+            </div>
+        </div>
         Total Population: {Math.floor(data.city.total_population)}k People
         <br>
         <br>
