@@ -1,8 +1,36 @@
 <script>
 	import PopulationBar from "./PopulationBar.svelte";
     import WeatherGraph from "./WeatherGraph.svelte";
-    import {Heading} from 'flowbite-svelte';    import Menu from "../../Menu.svelte";
+    import {Heading} from 'flowbite-svelte';
+    import Menu from "../../Menu.svelte";
     export let data;
+    let months = [data.city.avg_temp_jan, data.city.avg_temp_feb, data.city.avg_temp_march, data.city.avg_temp_april,
+            data.city.avg_temp_may, data.city.avg_temp_june, data.city.avg_temp_july, data.city.avg_temp_aug, data.city.avg_temp_sept,
+            data.city.avg_temp_oct, data.city.avg_temp_nov, data.city.avg_temp_dec];
+    let temp = 38;
+    let key = "a4db2bcce6e548158ec03035230603";
+    let url = `http://api.weatherapi.com/v1/current.json?key=${key}&q=${data.city.name}`;
+    async function loading() {
+		const response = await fetch(url, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			}
+		});
+		const weather  = await response.json();
+        console.log(weather["current"]);
+		return weather;
+	}
+    let options = ["Calculated from the following food amounts and units: fresh orange juice (59 oz), white bread (24oz), sugar (4lb), frozen chicken dinner (8-10 oz), ground beef (1 lb), potatoes (5 lb), eggs (1 doz), whole milk (.5 gal)"];
+    let menuDropped = false;
+    let menuclicked = () => {
+        if (menuDropped == true) {
+            $: menuDropped = false;
+        }
+        else {
+            $: menuDropped = true;
+        }
+    }
 </script>
 
 <style>
@@ -37,9 +65,6 @@
     .groceries {
         display: flex;
 		flex-wrap: wrap;
-    }
-    .material-symbols-outlined {
-        font-size: 15px;
     }
     
     .demographics {
