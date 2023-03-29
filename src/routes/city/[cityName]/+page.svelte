@@ -21,6 +21,7 @@
         console.log(weather["current"]);
 		return weather;
 	}
+    
     let options = ["Calculated from the following food amounts and units: fresh orange juice (59 oz), white bread (24oz), sugar (4lb), frozen chicken dinner (8-10 oz), ground beef (1 lb), potatoes (5 lb), eggs (1 doz), whole milk (.5 gal)"];
     let menuDropped = false;
     let menuclicked = () => {
