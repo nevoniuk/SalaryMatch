@@ -95,12 +95,14 @@
         }
         console.log(options);
     }
+    import AggregateCosts from "./AggregateCosts.svelte";
 </script>
 
 <style>
-    .container {
+
+    .header {
         display: flex;
-        width:100%;
+        width: 100%;
         justify-content: space-between;
     }
     
@@ -109,11 +111,6 @@
         margin-left: 60px;
         text-align: left;
         font-size: 40px;
-    }
-    .city-costs {
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
     .card {
@@ -167,42 +164,10 @@
     }
 
 </style>
-<div class="container">
+
+<div class="header">
     <h1 class="city-title">{data.city.name}</h1>
-    <div class="city-costs">
-        <div class="total">
-             <p>Average cost of living per month: ${totalCost}</p>
-        </div>
-        <div class="filters">
-            <Button><Chevron>Filters</Chevron></Button>
-            <Dropdown class="w-48 overflow-y-auto py-1 h-48 text-sm">
-            <li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
-                <Checkbox>Groceries</Checkbox>
-            </li>
-            <li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
-                <Checkbox checked on:click={() => selectOption("rent")}>Rent</Checkbox>
-            </li>
-            <li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
-                <Checkbox on:click={() => selectOption("internet")}>Internet</Checkbox>
-            </li>
-            <li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
-                <Checkbox on:click={() => selectOption("taxes")}>State Taxes</Checkbox>
-            </li>
-            <li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
-                <Checkbox on:click={() => selectOption("utilities")}>Utilities</Checkbox>
-            </li>
-            <li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
-                <Checkbox on:click={() => selectOption("electricity")}>Electricity</Checkbox>
-            </li>
-            <li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
-                <Checkbox on:click={() => selectOption("trash")}>Trash</Checkbox>
-            </li>
-            <li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
-                <Checkbox on:click={() => selectOption("water")}>Water</Checkbox>
-            </li>
-            </Dropdown>
-        </div>
-    </div>
+    <AggregateCosts data={data} />
 </div>
 
 <div class="flex flex-col gap-5 mt-5">
