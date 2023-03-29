@@ -1,17 +1,8 @@
 <script>
 	import PopulationBar from "./PopulationBar.svelte";
-    import Menu from "../../Menu.svelte";
+    import WeatherGraph from "./WeatherGraph.svelte";
+    import {Heading} from 'flowbite-svelte';    import Menu from "../../Menu.svelte";
     export let data;
-    let options = ["Calculated from the following food amounts and units: fresh orange juice (59 oz), white bread (24oz), sugar (4lb), frozen chicken dinner (8-10 oz), ground beef (1 lb), potatoes (5 lb), eggs (1 doz), whole milk (.5 gal)"];
-    let menuDropped = false;
-    let menuclicked = () => {
-        if (menuDropped == true) {
-            $: menuDropped = false;
-        }
-        else {
-            $: menuDropped = true;
-        }
-    }
 </script>
 
 <style>
@@ -51,6 +42,22 @@
         font-size: 15px;
     }
     
+    .demographics {
+        margin-right: 20px;
+    }
+    .weather {
+        display: flex;
+        align-content: space-between;
+        margin-top: 50px;
+    }
+    .graph {margin-right: 20px;}
+    .temp {
+        font-size: 20px;
+        margin-right: 3px;
+    }
+    .material-symbols-outlined {
+        font-size: 10px;
+    }
 
 </style>
 
@@ -59,7 +66,7 @@
     <!-- <div class="city-img-container"> -->
         <!-- <img class="city-img" src="https://via.placeholder.com/200"/> -->
     <!-- </div> -->
-    <div>
+    <div class="demographics">
         Average rent: ${data.city.average_rent} / month
         <br>
         <div class="groceries">
@@ -86,5 +93,19 @@
         <PopulationBar subsetName="Asian American" subsetTotal={data.city.asian_american_population} total={data.city.total_population} />
         <PopulationBar subsetName="Pacific Islander" subsetTotal={data.city.pacific_islander_population} total={data.city.total_population} />
         <PopulationBar subsetName="Hispanic" subsetTotal={data.city.hispanic_population} total={data.city.total_population} />
+        <br>
+        <br>
+    </div>
+    <div class="weather">
+        <div class="graph">
+            <WeatherGraph months = {months} />
+        </div>
+       {#await loading() then weather}
+
+            <h1 class="temp">Today:</h1>
+            <h1 class="temp">{weather.current.temp_f}</h1>
+            <span class="material-symbols-outlined"> circle </span>
+            <h1 class="temp">Fahrenheit</h1>
+       {/await}
     </div>
 </div>
