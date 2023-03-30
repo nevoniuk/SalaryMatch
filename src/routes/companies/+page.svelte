@@ -9,10 +9,10 @@
 	</div>
 	<div class= 'cityOptions'>
 		<div class='child1'>
-				<Button href="/companies/e350346a-8a4c-4f03-9eba-e12588673e8e">Microsoft</Button>
+				<Button href="/companies/b5f3a428-c4f6-44cb-99a1-4384a6cc6270">Microsoft</Button>
 		</div>
 		<div class='child1'>
-				<Button href="/companies/b70514f2-7d57-44a5-a656-89be19b62580">Google</Button>
+				<Button href="/companies/2a1fc226-f8cc-4c0c-9c7b-a21f2ca55024">Google</Button>
 			</div>						
 	</div>
 </main>
