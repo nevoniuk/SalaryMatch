@@ -12,7 +12,7 @@
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            id: $authToken
+            id: $authToken.replaceAll("\"", "")
         })
     }).then(async data => {
         if (data.status == 200||data.status == 201) {
