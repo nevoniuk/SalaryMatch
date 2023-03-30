@@ -1,4 +1,4 @@
 import { persisted } from "svelte-local-storage-store";
 
-export const authToken = persisted("authToken", "");
-export const loggedIn = persisted("loggedIn", "");
+export const authToken = persisted<string>("authToken", "");
+export const loggedIn = persisted<boolean>("loggedIn", false);

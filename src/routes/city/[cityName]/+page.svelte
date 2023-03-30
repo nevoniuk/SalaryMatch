@@ -52,7 +52,6 @@
         justify-content: center;
         flex-wrap: wrap;
     }
-
     .city-img {
         transform: rotate(-4deg) translate(0px, 20px);
         margin-bottom: 30px;
@@ -84,7 +83,6 @@
     .material-symbols-outlined {
         font-size: 10px;
     }
-
 </style>
 
 <h1 class="city-title">{data.city.name}</h1>

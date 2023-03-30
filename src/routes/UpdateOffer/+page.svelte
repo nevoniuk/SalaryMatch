@@ -1,9 +1,6 @@
 <script>
 	import { Heading, P, A, Label, Input } from 'flowbite-svelte'
-	import { onMount } from 'svelte';
-	import { get } from 'svelte/store'
 	/** @type {import('./$types').PageData} */
-	export let data;
 	import {authToken} from '../../auth'
 	console.log($authToken);
 	let url = 'https://salarymatch.azurewebsites.net/api/joboffers';
@@ -41,7 +38,7 @@
 						<div class= "titleAndEdit">
 							<div class="offeritem">
 								<p>
-									Title: {offer.title}
+									Official Job Title: {offer.title}
 								</p>
 							</div>
 							<div class="editbutton">
@@ -135,8 +132,5 @@
 		display:flex;
 		flex-direction: row;
 		justify-content: space-between;
-	}
-	.material-symbols {
-		font-size: 20px;
 	}
 </style>
