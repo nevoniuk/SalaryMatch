@@ -2,17 +2,10 @@
 	import { Button, Dropdown, DropdownItem, Chevron, Checkbox } from 'flowbite-svelte'
 	export let data;
 	let totalCost = 0;
-    let rent = 1;
-    let groceries = 0;
-    let water = 0;
-    let trash = 0;
-    let gas = 0;
-    let internet = 0;
-    let utilities = 0;
-    let electricity = 0;
     let options = [];
     options.push("rent");
     totalCost += data.city.average_rent
+
     const aggregateCosts = async () => {
         totalCost = 0;
         if (options.includes("rent"))  {
@@ -33,13 +26,9 @@
         if (options.includes("gas"))  {
             totalCost += data.city.average_gas_cost;
         }
-        if (options.includes("utilities"))  {
-            totalCost += data.city.average_utility_cost;
-        }
     }
 
     const selectOption = (option) => {
-        console.log(option);
         if (options.includes(option)) {
             let before = [];
             let after = [];
@@ -91,9 +80,6 @@
 		</li>
 		<li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
 			<Checkbox on:click={() => selectOption("internet")}>Internet</Checkbox>
-		</li>
-		<li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
-			<Checkbox on:click={() => selectOption("utilities")}>Utilities</Checkbox>
 		</li>
 		<li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
 			<Checkbox on:click={() => selectOption("electricity")}>Electricity</Checkbox>
