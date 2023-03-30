@@ -105,7 +105,7 @@
 			<Checkbox on:click={() => selectOption("water")}>Water</Checkbox>
 		</li>
 		<li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
-			<Button color="Alternative" on:click={aggregateCosts}>Submit</Button>
+			<Button on:click={aggregateCosts}>Submit</Button>
 		</li>
 		</Dropdown>
 	</div>
