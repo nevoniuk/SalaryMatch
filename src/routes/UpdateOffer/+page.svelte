@@ -33,7 +33,7 @@
 	<div class = 'subtitle'>
 		<Heading tag="h6" customSize="text-lg font-normal ">Select An Offer to Update</Heading>	
 	</div>
-	<div class= "slidercontainer">
+	<div  class= "slidercontainer">
 		<div class="slider">
 			{#await loading() then data}
 				{#each data as offer}
@@ -113,14 +113,16 @@
 	}
 	
 	section {
-		border-right: 1px solid white;
-		padding: 1rem;
+		background-color: rgb(188, 181, 223);
+		border-radius: 4px;
+        box-shadow: 1px 1px 3px 0px rgba(34, 17, 66,0.4);
+		margin-right: 15px;
 		min-width: 20vw;
 		height: 30vh;
 		scroll-snap-align: start;
 		text-align: center;
 		position: relative;
-		background-color: rgba(224, 189, 240, 1);
+		
 	}
 	.offeritem {
 		color:black;

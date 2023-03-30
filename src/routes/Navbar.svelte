@@ -1,8 +1,32 @@
 <script>
 	import './styles.css';
     import { Avatar, Button, Dropdown, DropdownItem, Search } from 'flowbite-svelte';
+    import {authToken} from '../auth'
+    import {loggedIn} from '../auth'
+    let notlogged = false;
+    let noToken="";
+    let logout = async () => {
+        const post = (await fetch("https://salarymatch.azurewebsites.net/api/logout", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            id: $authToken.replaceAll("\"", "")
+        })
+    }).then(async data => {
+        if (data.status == 200||data.status == 201) {
+            console.log("successful logout");
+            loggedIn.set(notlogged);
+            authToken.set(noToken);
+            window.location.href = "/";
+        } else {
+            console.log("fail");
+            alert("Logout Failed")
+        }
+        }).catch(err => console.log('err')));
+    }; 
 
-    let loggedIn = false;
 </script>
 
 <style>
@@ -15,8 +39,6 @@
             --nav-height: 27px;
         }
     }
-
-
     nav {
         width: 100%;
         background-color: var(--card-color);
@@ -124,14 +146,14 @@
             <a href="/profile"> Profile</a>
         </p>
     </div>
-    {#if loggedIn}
+    {#if $loggedIn}
         <Avatar id="profile-pic" src="https://picsum.photos/200" alt="" class="rounded-full w-[50px] h-[50px] cursor-pointer"/>
         <!-- Dropdown menu -->
         <Dropdown placement="bottom" triggeredBy="#profile-pic">
             <DropdownItem><a href="/profile">My Profile</a></DropdownItem>
-            <DropdownItem on:click={() => loggedIn = false}><a href="/">Log Out</a></DropdownItem>
+            <DropdownItem on:click={logout}><a href="/">Log Out</a></DropdownItem>
         </Dropdown>
     {:else}
-        <a href="/login"><Button gradient color="cyanToBlue" size="xs" on:click={() => loggedIn = true} >Log In</Button></a>
+        <a href="/login"><Button gradient color="cyanToBlue" size="xs">Log In</Button></a>
     {/if}
 </nav>
