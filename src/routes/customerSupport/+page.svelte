@@ -80,7 +80,7 @@
 		</TabItem>
 		<TabItem open title="Tools">
 			<div class="left">
-				<Heading tag="h1" class="mb-4" customSize="text-xl font-bold  md:text-xl lg:text-xl">Manage My Account</Heading>
+				<Heading tag="h1" class="mb-4" customSize="text-xl font-bold  md:text-xl lg:text-xl">SalaryMatch Tools</Heading>
 					<div class = "info">
 						<Heading tag="h1" class="mb-4" customSize="text-md font-medium">Job Offer Comparison</Heading>
 						<P color='text-gray-500 dark:text-gray-400'>SalaryMatch allows you to upload your job offers by clicking
@@ -97,22 +97,15 @@
 						<P color='text-gray-500 dark:text-gray-400'>SalaryMatch aims to connect its users by providing a way for them to leave reviews for both
 					    for past job locations and companies. These tools can be accessed under the <A href="./CityOptions"class="font-medium hover:underline">city</A> and 
 						<A href="./state"class="font-medium hover:underline">state</A> tabs.
-						</P>
-						
+						</P>	
 					</div>
 			</div>
 		</TabItem>
 	</Tabs>
 </div>
 <style>
-	.text{
-		width: 100%;
-	}
 	.questions {
 		width: 100%;  
-	}
-	.title {
-		top: 300px
 	}
 	.background {
 		position:relative;
