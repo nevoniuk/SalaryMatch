@@ -7,12 +7,7 @@ export const actions = {
 		const firstname = data.get('firstname');
 		const lastname = data.get('lastname');
 		const email = data.get('email');
-		console.log(email);
 		const message = data.get('message');
-		console.log(message);
-		console.log("llll");
-		console.log(firstname);
-		console.log(lastname);
 		if (!firstname) {
 			return fail(400, { firstname, missing: true });
 		}
