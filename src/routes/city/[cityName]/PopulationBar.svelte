@@ -4,6 +4,7 @@
     export let subsetName = "Default";
     let frac = subsetTotal / total;
     let displayNumInBar = frac > 0.04;
+    export let showSubsetTotal = true;
 </script>
 
 <style>
@@ -33,8 +34,11 @@
 </style>
 
 <div>
-    <p>{subsetName} Population - 
+    <p>{subsetName} Population 
+        {#if showSubsetTotal}
+        - 
         <span class="subset-count-text">{Math.ceil(subsetTotal)}k</span>
+        {/if}
     </p>
     <div class="bar-outer">
         <div class="bar-inner" style="width:{(frac) * 100}%">

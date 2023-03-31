@@ -1,6 +1,7 @@
 <script>
     import {authToken} from '../../../auth';
     import { Rating, Textarea, Button, Toolbar, ToolbarButton, Toggle, Card, Spinner } from 'flowbite-svelte';
+    import PopulationBar from '../../city/[cityName]/PopulationBar.svelte';
 
     export let data;
     let is_anonymous = false;
@@ -97,4 +98,20 @@
         </Card>
         {/each}
     </div>
+
+    <Card>
+        <p class="text-xl font-bold">Demographics</p>
+        <PopulationBar subsetName="Caucasian" subsetTotal={data.company.percent_caucasian} total={100} showSubsetTotal={false} />
+        <PopulationBar subsetName="Asian" subsetTotal={data.company.percent_asian} total={100} showSubsetTotal={false} />
+        <PopulationBar subsetName="Latino" subsetTotal={data.company.percent_latino} total={100} showSubsetTotal={false} />
+        <PopulationBar subsetName="Black" subsetTotal={data.company.percent_black} total={100} showSubsetTotal={false} />
+        <PopulationBar subsetName="Male" subsetTotal={data.company.percent_male} total={100} showSubsetTotal={false} />
+        <PopulationBar subsetName="Female" subsetTotal={data.company.percent_female} total={100} showSubsetTotal={false} />
+    </Card>
+    <br>
+    <!-- <PopulationBar subsetName="Black" subsetTotal={data.city.black_population} total={data.city.total_population} /> -->
+    <!-- <PopulationBar subsetName="Native American" subsetTotal={data.city.native_american_population} total={data.city.total_population} /> -->
+    <!-- <PopulationBar subsetName="Asian American" subsetTotal={data.city.asian_american_population} total={data.city.total_population} /> -->
+    <!-- <PopulationBar subsetName="Pacific Islander" subsetTotal={data.city.pacific_islander_population} total={data.city.total_population} /> -->
+    <!-- <PopulationBar subsetName="Hispanic" subsetTotal={data.city.hispanic_population} total={data.city.total_population} /> -->
 </div>
