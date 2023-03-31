@@ -3,7 +3,7 @@
     import WeatherGraph from "./WeatherGraph.svelte";
     import Menu from "../../Menu.svelte";
     import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell, Popover, Card } from "flowbite-svelte"
-
+    import {Button} from "flowbite-svelte";
     import { Radar } from 'svelte-chartjs'
     import {
         Chart as ChartJS,
@@ -141,6 +141,7 @@
             src={"https://www.google.com/maps/embed/v1/place?q=" + data.city.name.replaceAll(" ", "+") + "&maptype=satellite&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"}
         ></iframe>
     </div>
+    <Button color="Alternative" href="/cityReview/{$page.params.cityName}"> Review </Button>
     <Table>
         <TableHead>
             <TableHeadCell>Category</TableHeadCell>
