@@ -24,7 +24,7 @@
 
     let onSave = async () => {
         const post = (await fetch("https://salarymatch.azurewebsites.net/api/users", {
-            method: "POST",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + $authToken
