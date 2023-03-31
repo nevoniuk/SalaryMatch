@@ -52,13 +52,13 @@
 <style>
     .city-costs {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
     }
 	.filters {
-			display:flex;
-			height: 20%;
-		}
+        display:flex;
+        height: 20%;
+    }
 	.total {
 		height: 20%;
 		margin-right: 20px;
@@ -67,7 +67,7 @@
 
 <div class="city-costs">
 	<div class="total">
-		<p>Average cost of living per month: ${totalCost}</p>
+		<p>Average Cost of Living: <span class="text-xl font-bold">${totalCost.toFixed(2)}</span>/Month</p>
 	</div>
 	<div class="filters">
 		<Button><Chevron>Filters</Chevron></Button>
