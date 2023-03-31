@@ -1,6 +1,5 @@
 <script>
     import { Button } from "flowbite-svelte";
-    import Dropdown from "../Dropdown.svelte";
     import DropdownSet from "./DropdownSet.svelte";
 
     const preferences = new Object();
@@ -62,14 +61,6 @@
 <style>
     .prefs.card {
         width: 100%;
-    }
-    .main-title {
-        margin-top: 25px;
-        margin-bottom: 40px;
-        margin-left: 60px;
-        text-align: left;
-        font-size: 40px;
-        font-weight: bold;
     }
     .card-content {
         margin: auto;
