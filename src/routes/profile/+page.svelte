@@ -24,7 +24,7 @@
 
     let onSave = async () => {
         const post = (await fetch("https://salarymatch.azurewebsites.net/api/users", {
-            method: "POST",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + $authToken
@@ -40,6 +40,7 @@
         }).then(async data => {
             if (data.status == 200||data.status == 201) {
                 console.log("success");
+                alert("Update Successful");
                 window.location.href = "/";
             } else {
                 console.log("fail");

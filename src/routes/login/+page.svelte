@@ -2,13 +2,11 @@
     import { Button } from 'flowbite-svelte';
     import {authToken} from '../../auth'
     import {loggedIn} from '../../auth'
-    let logged = true;
     let onSignIn = async () => {
-        console.log("Sign I???n");
         var id = document.getElementsByName("id")[0].value;
         var password = document.getElementsByName("password")[0].value;
+
         var token;
-        console.log(id, password);
         const post = (await fetch("https://salarymatch.azurewebsites.net/api/login", {
             method: "POST",
             headers: {
@@ -21,13 +19,10 @@
         }).then(async data => {
             token = await data.text()
             if (data.status == 200||data.status == 201) {
-                authToken.set(token)
-                loggedIn.set(logged);
-                console.log("success");
-                console.log(token)
+                authToken.set(token.replaceAll('"', ''))
+                loggedIn.set(true);
                 window.location.href = "/";
             } else {
-                console.log("fail");
                 alert("Login Failed")
             }
 
@@ -100,9 +95,6 @@
         display: flex;
         flex-direction: row;
     }
-    .bigger >  p {
-        font-size: 16px;
-    }
 </style>
 <div class="login card">
     <p class="login-text">Login</p>
@@ -123,18 +115,13 @@
         <input name="password">
     </form>
 
-    <div class="bigger button">
-        <button on:click={onSignIn}>
+    <div class="other-buttons-container">
+        <Button gradient color="purpleToBlue" size="md" class="w-full" on:click={onSignIn}>
             <p>Sign In</p>
-        </button>
+        </Button>
     </div>
     <div class="other-buttons-container">
-        <div class="button">
-            <p>Forgot Password</p>
-        </div>
-        <div class="button">
-            <a href="/signup">Create Account</a>
-        </div>
+        <a href="/reset"><Button gradient color="purpleToBlue" size="md" class="w-full">Forgot Password</Button></a>
     </div>
     <div class="flex flex-col items-center">
         <div class="text-base">First time?</div>
