@@ -9,22 +9,22 @@
     const aggregateCosts = async () => {
         totalCost = 0;
         if (options.includes("rent"))  {
-            totalCost += data.city.average_rent;
+            totalCost += +data.city.average_rent;
         }
         if (options.includes("groceries"))  {
-            totalCost += (data.city.average_groceries_cost * 8);
+            totalCost += (+data.city.average_groceries_cost * 8);
         }
         if (options.includes("water"))  {
-            totalCost += data.city.average_water_cost;
+            totalCost += +data.city.average_water_cost;
         }
         if (options.includes("trash"))  {
-            totalCost += data.city.average_trash_cost;
+            totalCost += +data.city.average_trash_cost;
         }
         if (options.includes("electricity"))  {
-            totalCost += data.city.average_electricity_cost;
+            totalCost += +data.city.average_electricity_cost;
         }
         if (options.includes("gas"))  {
-            totalCost += data.city.average_gas_cost;
+            totalCost += +data.city.average_gas_cost;
         }
     }
 
