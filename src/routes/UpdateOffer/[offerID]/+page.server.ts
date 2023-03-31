@@ -39,6 +39,7 @@ export const actions = {
 				"Authorization": `Bearer ${userID}`
 			},
 			body: JSON.stringify({
+				id: id,
 				RSU: rsu,
 				signing_bonus: bonus,
 				relocation_bonus: relocation,
