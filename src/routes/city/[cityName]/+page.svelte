@@ -1,8 +1,28 @@
 <script>
 	import PopulationBar from "./PopulationBar.svelte";
     import WeatherGraph from "./WeatherGraph.svelte";
-    import {Button, Heading} from 'flowbite-svelte';
     import Menu from "../../Menu.svelte";
+    import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell, Popover, Card } from "flowbite-svelte"
+
+    import { Radar } from 'svelte-chartjs'
+    import {
+        Chart as ChartJS,
+        Title,
+        Tooltip,
+        Legend,
+        PointElement,
+        RadialLinearScale,
+        LineElement,
+    } from 'chart.js';
+    ChartJS.register(
+        Title,
+        Tooltip,
+        Legend,
+        PointElement,
+        RadialLinearScale,
+        LineElement
+    );
+
     export let data;
     import { onMount } from 'svelte';
 	import { get } from 'svelte/store';
@@ -36,6 +56,24 @@
             $: menuDropped = true;
         }
     }
+
+    const utilitiesData = {
+        labels: [
+            'Electricity',
+            'Gas',
+            'Water',
+            'Trash'
+        ],
+        datasets: [
+            {
+                label: 'Utilities Breakdown',
+                fill: true,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgb(194, 116, 161)',
+                data: [data.city.average_electricity_cost, data.city.average_gas_cost, data.city.average_water_cost, data.city.average_trash_cost],
+            },
+        ],
+    };
 </script>
 
 <style>
@@ -56,7 +94,6 @@
         justify-content: center;
         flex-wrap: wrap;
     }
-
     .city-img {
         transform: rotate(-4deg) translate(0px, 20px);
         margin-bottom: 30px;
@@ -88,61 +125,75 @@
     .material-symbols-outlined {
         font-size: 10px;
     }
-
-    .header {
-        display: flex;
-        align-content: space-around;
-    }
 </style>
 
-<div class="header">
-    <h1 class="city-title">{data.city.name}</h1>
-    <Button href="/cityReview/{$page.params.cityName}">Leave A Review</Button>
-</div>
-<div class="card">
-    <!-- <div class="city-img-container"> -->
-        <!-- <img class="city-img" src="https://via.placeholder.com/200"/> -->
-    <!-- </div> -->
-    <div class="demographics">
-        Average rent: ${data.city.average_rent} / month
-        <br>
-        <div class="groceries">
-            <div class="item">
-                <p>
-                    Average groceries: ${data.city.average_groceries_cost * 8} / month
-                </p>
-            </div>
-            <div class="item">
-                <a on:click={() => menuclicked()}>
-                    <span class="material-symbols-outlined orange-hover"> help </span>
-                </a>
-            </div>
-            <div class="menu">
-                <Menu options={options} dropped={menuDropped} />
-            </div>
-        </div>
-        Total Population: {Math.floor(data.city.total_population)}k People
-        <br>
-        <br>
-        <PopulationBar subsetName="Caucasian" subsetTotal={data.city.caucasian_population} total={data.city.total_population} />
-        <PopulationBar subsetName="Black" subsetTotal={data.city.black_population} total={data.city.total_population} />
-        <PopulationBar subsetName="Native American" subsetTotal={data.city.native_american_population} total={data.city.total_population} />
-        <PopulationBar subsetName="Asian American" subsetTotal={data.city.asian_american_population} total={data.city.total_population} />
-        <PopulationBar subsetName="Pacific Islander" subsetTotal={data.city.pacific_islander_population} total={data.city.total_population} />
-        <PopulationBar subsetName="Hispanic" subsetTotal={data.city.hispanic_population} total={data.city.total_population} />
-        <br>
-        <br>
+<div class="flex flex-col gap-5 mt-5">
+    <div class="flex flex-row justify-around items-center">
+        <h1 class="text-9xl">{data.city.name}</h1>
+        <iframe
+            title={"Map of " + data.city.name}
+            width="1000"
+            height="600"
+            frameborder="0"
+            scrolling="no"
+            marginheight="0"
+            marginwidth="0"
+            src={"https://www.google.com/maps/embed/v1/place?q=" + data.city.name.replaceAll(" ", "+") + "&maptype=satellite&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"}
+        ></iframe>
     </div>
-    <div class="weather">
-        <div class="graph">
-            <WeatherGraph months = {months} />
-        </div>
-       {#await loading() then weather}
-
-            <h1 class="temp">Today:</h1>
-            <h1 class="temp">{weather.current.temp_f}</h1>
-            <span class="material-symbols-outlined"> circle </span>
-            <h1 class="temp">Fahrenheit</h1>
-       {/await}
+    <Table>
+        <TableHead>
+            <TableHeadCell>Category</TableHeadCell>
+            <TableHeadCell>Average Monthly Cost</TableHeadCell>
+        </TableHead>
+        <TableBody>
+            <TableBodyRow>
+                <TableBodyCell>Rent</TableBodyCell>
+                <TableBodyCell>${data.city.average_rent}</TableBodyCell>
+            </TableBodyRow>
+            <TableBodyRow>
+                <TableBodyCell>Groceries</TableBodyCell>
+                <TableBodyCell>$<span id="groceries">{(data.city.average_groceries_cost * 8).toFixed(2)}<span class="material-symbols-outlined orange-hover"> help </span></span></TableBodyCell>
+            </TableBodyRow>
+            <TableBodyRow>
+                <TableBodyCell>Utilities</TableBodyCell>
+                <TableBodyCell>${data.city.average_utility_cost.toFixed(2)}</TableBodyCell>
+            </TableBodyRow>
+        </TableBody>
+    </Table>
+    <Popover class="w-65 text-sm font-light" title="The Math Behind Groceries" triggeredBy="#groceries">
+        Calculated from the following food amounts and units: fresh orange juice (58 oz), white bread (24oz), sugar (4lb), frozen chicken dinner (8-10 oz), ground beef (1 lb), potatoes (5 lb), eggs (1 doz), whole milk (.5 gal)
+    </Popover>
+    <div class="card grid grid-rows-none gap-10">
+        <Card>
+            <p class="text-xl font-bold">Total Population: {Math.floor(data.city.total_population)}k People</p>
+            <div class="flex flex-col gap-5">
+                <PopulationBar subsetName="Caucasian" subsetTotal={data.city.caucasian_population} total={data.city.total_population} />
+                <PopulationBar subsetName="Black" subsetTotal={data.city.black_population} total={data.city.total_population} />
+                <PopulationBar subsetName="Native American" subsetTotal={data.city.native_american_population} total={data.city.total_population} />
+                <PopulationBar subsetName="Asian American" subsetTotal={data.city.asian_american_population} total={data.city.total_population} />
+                <PopulationBar subsetName="Pacific Islander" subsetTotal={data.city.pacific_islander_population} total={data.city.total_population} />
+                <PopulationBar subsetName="Hispanic" subsetTotal={data.city.hispanic_population} total={data.city.total_population} />
+            </div>
+        </Card>
+        {#await loading() then weather}
+        <Card size="lg">
+            <p class="text-xl font-bold w-full mb-16">Today's Weather: {weather.current.temp_f}&deg;F</p>
+            <div class="graph">
+                <WeatherGraph months = {months} />
+            </div>
+        </Card>
+        {/await}
+        <Card>
+            <p class="text-xl font-bold w-full mb-16">Utilities Breakdown</p>
+            <Radar data={utilitiesData} options={{ responsive: true }} />
+        </Card>
+        <Card>
+            <p class="text-xl font-bold w-full mb-5">Legalities</p>
+            <p class="text-lg">Abortion: <span class="font-bold">{(data.city.state_abortion_laws ?? "Unknown").replace("_", " ").toUpperCase()}</span></p>
+            <p class="text-lg">Cannabis: <span class="font-bold">{data.city.state_cannbis_legality ?? "Unknown"}</span></p>
+            <p class="text-lg">Crime Rate: <span class="font-bold">{Math.floor(data.city.crime_rate_per_1000)} Per 1k People</span></p>
+            <p class="text-lg">School Score: <span class="font-bold">{data.city.state_school_score}/100</span></p>
+        </Card>
     </div>
 </div>

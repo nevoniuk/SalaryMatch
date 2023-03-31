@@ -2,13 +2,11 @@
     import { Button } from 'flowbite-svelte';
     import {authToken} from '../../auth'
     import {loggedIn} from '../../auth'
-    let logged = true;
     let onSignIn = async () => {
-        console.log("Sign I???n");
         var id = document.getElementsByName("id")[0].value;
         var password = document.getElementsByName("password")[0].value;
+
         var token;
-        console.log(id, password);
         const post = (await fetch("https://salarymatch.azurewebsites.net/api/login", {
             method: "POST",
             headers: {
@@ -21,13 +19,10 @@
         }).then(async data => {
             token = await data.text()
             if (data.status == 200||data.status == 201) {
-                authToken.set(token)
-                loggedIn.set(logged);
-                console.log("success");
-                console.log(token)
+                authToken.set(token.replaceAll('"', ''))
+                loggedIn.set(true);
                 window.location.href = "/";
             } else {
-                console.log("fail");
                 alert("Login Failed")
             }
 
@@ -99,9 +94,6 @@
     .other-buttons-container {
         display: flex;
         flex-direction: row;
-    }
-    .bigger >  p {
-        font-size: 16px;
     }
 </style>
 <div class="login card">
