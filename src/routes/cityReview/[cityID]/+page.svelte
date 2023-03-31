@@ -8,11 +8,11 @@
     /** @type {import('./$types').PageData} */
 
     let is_anonymous = false;
-    let email = "";
-    export let form;
+    
     export let data;
-	console.log($authToken);
+
     console.log($page.params.cityID);
+
     var url = "https://salarymatch.azurewebsites.net/api/cities/" + $page.params.cityID + "/reviews";
     console.log(url);
 	async function loading() {
@@ -27,38 +27,15 @@
 		console.log(data);
 		return data;
 	}
-
-let getEmail = async () => {
-        const post = (await fetch("https://salarymatch.azurewebsites.net/api/token", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                id: $authToken
-            })
-        }).then(async data => {
-            email = await data.text()
-            if (data.status == 200||data.status == 201) {
-                console.log(email);
-            } else {
-                console.log("fail");
-                alert("Login Failed")
-            }
-
-        }).catch(err => console.log('err')));
-    }; 
-
     
     
 let onReview = async () => {
         console.log($authToken)
         var rating = document.getElementsByName("rating")[0].value;
         var comment = document.getElementsByName("comment")[0].value;
-        var url = "https://salarymatch.azurewebsites.net/api/cities/" + $page.params.cityID + "/reviews";
         var city = $page.params.cityID;
         console.log(rating, comment, url, is_anonymous, city);
-        console.log(email);
+
         const post = (await fetch(url, {
             method: "POST",
             headers: {
@@ -66,11 +43,11 @@ let onReview = async () => {
                 "Authorization": "Bearer " + $authToken
             },
             body: JSON.stringify({
-                user_id: $authToken,
-				is_anonymous: is_anonymous,
-				city_id: city,
-				overall_rating: rating,
-				comment: comment
+                is_anonymous: is_anonymous,
+                city_id: city,
+                overall_rating: rating,
+                comment: comment,
+                
             })
         }).then(async data => {
             if (data.status == 200||data.status == 201) {
@@ -202,7 +179,7 @@ let onReview = async () => {
             </div>
             
            <div class="button">
-                <button on:click={onReview, getEmail}>
+                <button on:click={onReview}>
                     <p>Submit</p>
                 </button>
             </div>

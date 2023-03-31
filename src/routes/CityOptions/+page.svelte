@@ -9,7 +9,7 @@
 	</div>
 	<div class= 'cityOptions'>
 		<div class='child1'>
-				<Button href="/cityReview">Los Angeles</Button>
+				<Button href="/city/da85bd20-410d-4a78-a89d-082189edd288">Los Angeles</Button>
 		</div>
 		<div class='child1'>
 				<Button href="/city/14a4b9bf-e39d-4881-ae22-e1f1a7dfd3ef">New York City</Button>
