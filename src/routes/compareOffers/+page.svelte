@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Heading, P, A, Label, Input, Button } from 'flowbite-svelte'
 	import { onMount } from 'svelte';
+	import { each } from 'svelte/internal';
 	import { get } from 'svelte/store'
 	/** @type {import('./$types').PageData} */
 
@@ -67,6 +68,7 @@
     };
 
     let comparisonResult:JobOfferComparison = null;
+	let comparisonKeys = [];
 
     let sendOffer = () => {
         comparisonResult = {
@@ -83,6 +85,10 @@
             offer1SalaryMatch: false,
             offer2SalaryMatch: true,
         };
+
+		comparisonKeys = Object.keys(comparisonResult);
+		comparisonKeys = comparisonKeys.map((key) => key.substring(6));
+		comparisonKeys = [...new Set(comparisonKeys)];
     };
 </script>
 
@@ -147,12 +153,19 @@
 
         <div>
             {#if comparisonResult != null}
-                <div class="comparison-table">
-
-                </div>
-                <p>{comparisonResult.offer1TotalCompensation}</p>
-                <p>{comparisonResult.offer2TotalCompensation}</p>
-                <p>{comparisonResult}</p>
+				{#each comparisonKeys as comparisonKey}
+					<div class="comparison-row">
+						<div class="comparison-column">
+							<p>{comparisonKey}</p>
+						</div>
+						<div class="comparison-column">
+							<p>{comparisonResult["offer1" + comparisonKey]}</p>
+						</div>
+						<div class="comparison-column">
+							<p>{comparisonResult["offer2" + comparisonKey]}</p>
+						</div>
+					</div>
+				{/each}
             {/if}
         </div>
 
@@ -162,10 +175,23 @@
 </main>
 
 <style>
-    .comparison-table-row {
-        display: flex;
-
+    .comparison-row {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		width: 80vw;
+		background-color: rgb(255, 255, 255);
     }
+    .comparison-column {
+		display: flex;
+		flex-direction: column;
+		flex-basis: 100%;
+		flex: 1;
+		padding: 4px;
+		padding-left: 15px;
+		padding-right: 8px;
+    }
+
 	.material-symbols-outlined {
         font-size: 20px;
     }
