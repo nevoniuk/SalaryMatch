@@ -143,7 +143,7 @@
         <Card>
             <p class="text-xl font-bold w-full mb-5">Legalities</p>
             <p class="text-lg">Abortion: <span class="font-bold">{(data.city.state_abortion_laws ?? "Unknown").replace("_", " ").toUpperCase()}</span></p>
-            <p class="text-lg">Cannabis: <span class="font-bold">{data.city.state_cannbis_legality ?? "Unknown"}</span></p>
+            <p class="text-lg">Cannabis: <span class="font-bold">{data.city.state_cannabis_legality ?? "Unknown"}</span></p>
             <p class="text-lg">Crime Rate: <span class="font-bold">{Math.floor(data.city.crime_rate_per_1000)} Per 1k People</span></p>
             <p class="text-lg">School Score: <span class="font-bold">{data.city.state_school_score}/100</span></p>
         </Card>
