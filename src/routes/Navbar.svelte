@@ -88,7 +88,7 @@
 		<a href="/"><img src="/salary_match_logo.png" alt="" /></a>
     </div>
     <div class="navItem">
-        <a href="/cityReview"><span class="material-symbols-outlined orange-hover"> home </span></a>
+        <a href="/"><span class="material-symbols-outlined orange-hover"> home </span></a>
     </div>
     <div class="w-[50%] mr-auto">
         <Search size="md">
