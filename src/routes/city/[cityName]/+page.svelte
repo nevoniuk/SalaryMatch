@@ -3,8 +3,7 @@
     import { Button, Dropdown, DropdownItem, Chevron, Checkbox } from 'flowbite-svelte'
     import AggregateCosts from "./AggregateCosts.svelte";
     import WeatherGraph from "./WeatherGraph.svelte";
-    import Menu from "../../Menu.svelte";
-    import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell, Popover, Card } from "flowbite-svelte"
+    import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell, Popover, Card, Button, Dropdown, DropdownItem, Chevron, Checkbox} from "flowbite-svelte"
 
     import { Radar } from 'svelte-chartjs'
     import {
@@ -30,7 +29,6 @@
     let months = [data.city.avg_temp_jan, data.city.avg_temp_feb, data.city.avg_temp_march, data.city.avg_temp_april,
             data.city.avg_temp_may, data.city.avg_temp_june, data.city.avg_temp_july, data.city.avg_temp_aug, data.city.avg_temp_sept,
             data.city.avg_temp_oct, data.city.avg_temp_nov, data.city.avg_temp_dec];
-    let temp = 38;
     let key = "a4db2bcce6e548158ec03035230603";
     let url = `http://api.weatherapi.com/v1/current.json?key=${key}&q=${data.city.name}`;
     async function loading() {
@@ -44,17 +42,6 @@
         console.log(weather["current"]);
 		return weather;
 	}
-    
-    let options = ["Calculated from the following food amounts and units: fresh orange juice (59 oz), white bread (24oz), sugar (4lb), frozen chicken dinner (8-10 oz), ground beef (1 lb), potatoes (5 lb), eggs (1 doz), whole milk (.5 gal)"];
-    let menuDropped = false;
-    let menuclicked = () => {
-        if (menuDropped == true) {
-            $: menuDropped = false;
-        }
-        else {
-            $: menuDropped = true;
-        }
-    }
 
     const utilitiesData = {
         labels: [
@@ -73,10 +60,45 @@
             },
         ],
     };
+
+    let totalCost = 0;
+    let rent = 1;
+    let groceries = 0;
+    let water = 0;
+    let trash = 0;
+    let gas = 0;
+    let internet = 0;
+    let utilities = 0;
+    let electricity = 0;
+    let options = [];
+    options.push("rent");
+    let aggregateCosts = async () => {
+        //onhold until data is available
+    }
+    const selectOption = (option) => {
+        console.log(option)
+        if (options.includes(option)) {
+            let before = [];
+            let after = [];
+            for (let i = 0; i < options.length; i++) {
+                if (options[i] == option) {
+                    before = options.slice(0, i);
+                    console.log(before);
+                    after = options.slice(i+1);
+                    console.log(after);
+                    options = before.concat(after);
+                }
+            }
+        }
+        else {
+            options.push(option);
+        }
+        console.log(options);
+    }
+    import AggregateCosts from "./AggregateCosts.svelte";
 </script>
 
 <style>
-
     .header {
         display: flex;
         width: 100%;
@@ -100,34 +122,7 @@
         justify-content: center;
         flex-wrap: wrap;
     }
-    .city-img {
-        transform: rotate(-4deg) translate(0px, 20px);
-        margin-bottom: 30px;
-        margin-left: 20px;
-    }
-    .city-img-container {
-        width: 250px;
-        height: 250px;
-        margin-right: 20px;
-    }
-    .groceries {
-        display: flex;
-		flex-wrap: wrap;
-    }
-    
-    .demographics {
-        margin-right: 20px;
-    }
-    .weather {
-        display: flex;
-        align-content: space-between;
-        margin-top: 50px;
-    }
     .graph {margin-right: 20px;}
-    .temp {
-        font-size: 20px;
-        margin-right: 3px;
-    }
     .material-symbols-outlined {
         font-size: 10px;
     }
@@ -135,7 +130,10 @@
 
 <div class="flex flex-col gap-5 mt-5">
     <div class="flex flex-row justify-around items-center">
-        <h1 class="text-9xl">{data.city.name}</h1>
+        <div class="flex flex-col gap-5">
+            <h1 class="text-9xl">{data.city.name}</h1>
+            <AggregateCosts data={data} />
+        </div>
         <iframe
             title={"Map of " + data.city.name}
             width="1000"
