@@ -40,26 +40,32 @@
     let offerOne = null;
     let offerTwo = null;
 
+	let setOfOffers = {};
+
 
     let onOfferSelected = (offer) => {
+		setOfOffers[offer.id] = offer;
 
-        if (offerChecked[offer] == false) {
+        if (offerChecked[offer.id] == false) {
+			offerOne = null;
+			offerTwo = null;
             return;
         }
+
         let keys = Object.keys(offerChecked);
         let otherOffer = null;
 
         keys.forEach(key => {
-            if (key != offer && offerChecked[key] == true) {
-                otherOffer = key;
+            if (key != offer.id && offerChecked[key] == true) {
+                otherOffer = setOfOffers[key];
             }
         });
 
         offerChecked = {};
 
-        offerChecked[offer] = true;
+        offerChecked[offer.id] = true;
         if (otherOffer != null) {
-            offerChecked[otherOffer] = true;
+            offerChecked[otherOffer.id] = true;
         }
 
         offerOne = otherOffer;
@@ -134,7 +140,7 @@
 								Relocation Bonus: {offer.relocation_bonus}
 							</p>
 						</div>
-                        <input type=checkbox bind:checked={offerChecked[offer]} on:change={() => {onOfferSelected(offer)}}/>
+                        <input type=checkbox bind:checked={offerChecked[offer.id]} on:change={() => {onOfferSelected(offer)}}/>
 					</section>
 				{/each}
 			{/await}
