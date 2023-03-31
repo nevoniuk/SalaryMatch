@@ -92,10 +92,10 @@
     <div class="flex flex-row justify-around items-center">
         <div class="flex flex-col gap-5">
             <h1 class="text-9xl">{data.city.name}</h1>
-        <div class="review-button">
-            <Button outline href="/cityReview/{$page.params.cityName}"> Reviews </Button>
-        </div>
             <AggregateCosts data={data} />
+            <div class="review-button">
+                <Button outline href="/cityReview/{$page.params.cityName}"> Reviews </Button>
+            </div>
         </div>
         <iframe
             title={"Map of " + data.city.name}
