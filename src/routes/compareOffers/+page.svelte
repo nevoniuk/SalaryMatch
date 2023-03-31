@@ -76,7 +76,15 @@
     let comparisonResult:JobOfferComparison = null;
 	let comparisonKeys = [];
 
-    let sendOffer = () => {
+    let sendOffer = async () => {
+
+		// let result = await fetch("https://salarymatch.azurewebsites.net/api/joboffers/compare", {
+		// 	method: "GET",
+		// 	body: JSON.stringify({
+		// 		offer1ID: offerOne.ID, offer2ID: offerTwo.ID
+		// 	})
+		// });
+		// console.log(result);
         comparisonResult = {
             offer1ID: "o1ID",
             offer2ID: "o2ID",
@@ -92,9 +100,15 @@
             offer2SalaryMatch: true,
         };
 
-		comparisonKeys = Object.keys(comparisonResult);
-		comparisonKeys = comparisonKeys.map((key) => key.substring(6));
+		let rawComparisonKeys = Object.keys(comparisonResult);
+		rawComparisonKeys.forEach(rawComparisonKey => {
+			if (typeof comparisonResult[rawComparisonKey] == "boolean") {
+				comparisonResult[rawComparisonKey] = comparisonResult[rawComparisonKey]? 1 : 0;
+			}
+		});
+		comparisonKeys = rawComparisonKeys.map((key) => key.substring(6));
 		comparisonKeys = [...new Set(comparisonKeys)];
+		comparisonKeys.splice(comparisonKeys.indexOf("ID"), 1);
     };
 </script>
 
@@ -151,29 +165,36 @@
 				{/each}
 			{/await}
 		</div>
+		<br>
         <div>
             {#if offerOne != null && offerTwo != null}
                 <Button on:click={sendOffer}>Compare Job Offers</Button>
             {/if}
         </div>
+		<br>
 
         <div>
             {#if comparisonResult != null}
 				{#each comparisonKeys as comparisonKey}
 					<div class="comparison-row">
 						<div class="comparison-column">
-							<p>{comparisonKey}</p>
+							<!-- add spaces to camel case-->
+							<p>{comparisonKey.replace(/([A-Z])/g, ' $1').trim()}</p>
 						</div>
 						<div class="comparison-column">
-							<p>{comparisonResult["offer1" + comparisonKey]}</p>
+							<p>{comparisonResult["offer1" + comparisonKey]}
+							{comparisonResult["offer1" + comparisonKey] > comparisonResult["offer2" + comparisonKey]? "✓" : ""}</p>
 						</div>
 						<div class="comparison-column">
-							<p>{comparisonResult["offer2" + comparisonKey]}</p>
+							<p>{comparisonResult["offer2" + comparisonKey]}
+							{comparisonResult["offer2" + comparisonKey] > comparisonResult["offer1" + comparisonKey]? "✓" : ""}</p>
 						</div>
 					</div>
 				{/each}
             {/if}
         </div>
+		<br>
+		<br>
 
 	</div>
 
@@ -186,14 +207,15 @@
 		flex-direction: row;
 		flex-wrap: wrap;
 		width: 80vw;
-		background-color: rgb(255, 255, 255);
+		background-color: rgb(238, 242, 252);
+		box-shadow: 3px 3px 9px 1px #06053f5c;
     }
     .comparison-column {
 		display: flex;
 		flex-direction: column;
 		flex-basis: 100%;
 		flex: 1;
-		padding: 4px;
+		padding: 8px;
 		padding-left: 15px;
 		padding-right: 8px;
     }
