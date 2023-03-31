@@ -1,10 +1,8 @@
 <script>
 	import PopulationBar from "./PopulationBar.svelte";
-    import { Button, Dropdown, DropdownItem, Chevron, Checkbox } from 'flowbite-svelte'
     import AggregateCosts from "./AggregateCosts.svelte";
     import WeatherGraph from "./WeatherGraph.svelte";
     import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell, Popover, Card, Button, Dropdown, DropdownItem, Chevron, Checkbox} from "flowbite-svelte"
-
     import { Radar } from 'svelte-chartjs'
     import {
         Chart as ChartJS,
@@ -25,7 +23,6 @@
     );
 
     export let data;
-
     let months = [data.city.avg_temp_jan, data.city.avg_temp_feb, data.city.avg_temp_march, data.city.avg_temp_april,
             data.city.avg_temp_may, data.city.avg_temp_june, data.city.avg_temp_july, data.city.avg_temp_aug, data.city.avg_temp_sept,
             data.city.avg_temp_oct, data.city.avg_temp_nov, data.city.avg_temp_dec];
@@ -60,58 +57,9 @@
             },
         ],
     };
-
-    let totalCost = 0;
-    let rent = 1;
-    let groceries = 0;
-    let water = 0;
-    let trash = 0;
-    let gas = 0;
-    let internet = 0;
-    let utilities = 0;
-    let electricity = 0;
-    let options = [];
-    options.push("rent");
-    let aggregateCosts = async () => {
-        //onhold until data is available
-    }
-    const selectOption = (option) => {
-        console.log(option)
-        if (options.includes(option)) {
-            let before = [];
-            let after = [];
-            for (let i = 0; i < options.length; i++) {
-                if (options[i] == option) {
-                    before = options.slice(0, i);
-                    console.log(before);
-                    after = options.slice(i+1);
-                    console.log(after);
-                    options = before.concat(after);
-                }
-            }
-        }
-        else {
-            options.push(option);
-        }
-        console.log(options);
-    }
-    import AggregateCosts from "./AggregateCosts.svelte";
 </script>
 
 <style>
-    .header {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-    }
-    
-    .city-title {
-        margin: 40px;
-        margin-left: 60px;
-        text-align: left;
-        font-size: 40px;
-    }
-
     .card {
         width: 100%;
         background-color: green;
@@ -181,12 +129,12 @@
             </div>
         </Card>
         {#await loading() then weather}
-        <Card size="lg">
-            <p class="text-xl font-bold w-full mb-16">Today's Weather: {weather.current.temp_f}&deg;F</p>
-            <div class="graph">
-                <WeatherGraph months = {months} />
-            </div>
-        </Card>
+            <Card size="lg">
+                <p class="text-xl font-bold w-full mb-16">Today's Weather: {weather.current.temp_f}&deg;F</p>
+                <div class="graph">
+                    <WeatherGraph months = {months} />
+                </div>
+            </Card>
         {/await}
         <Card>
             <p class="text-xl font-bold w-full mb-16">Utilities Breakdown</p>

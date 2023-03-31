@@ -79,9 +79,6 @@
 			<Checkbox checked on:click={() => selectOption("rent")}>Rent</Checkbox>
 		</li>
 		<li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
-			<Checkbox on:click={() => selectOption("internet")}>Internet</Checkbox>
-		</li>
-		<li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
 			<Checkbox on:click={() => selectOption("electricity")}>Electricity</Checkbox>
 		</li>
 		<li class="rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
