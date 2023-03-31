@@ -10,7 +10,7 @@
     .bar-outer {
         width: 300px;
         height: 17px;
-        background-color: white;
+        background-color: lightskyblue;
         border-radius: 7px;
         margin: 5px;
     }
