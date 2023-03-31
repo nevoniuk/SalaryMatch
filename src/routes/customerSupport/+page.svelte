@@ -65,7 +65,7 @@
 				</div>
 			</div>
 		</TabItem>
-		<TabItem open title="Manage My Account">
+		<TabItem title="Manage My Account">
 			<div class="left">
 				<Heading tag="h1" class="mb-4" customSize="text-xl font-bold  md:text-xl lg:text-xl">Manage My Account</Heading>
 					<div class = "info">
@@ -78,7 +78,7 @@
 					</div>
 			</div>
 		</TabItem>
-		<TabItem open title="Tools">
+		<TabItem title="Tools">
 			<div class="left">
 				<Heading tag="h1" class="mb-4" customSize="text-xl font-bold  md:text-xl lg:text-xl">SalaryMatch Tools</Heading>
 					<div class = "info">
@@ -88,15 +88,19 @@
 						calculating how your offer's included bonus, salary, relocation, location etc. compare with your preferences and your other
 						offers.
 						</P>
+						<br>
+						<br>
 						<Heading tag="h1" class="mb-4" customSize="text-md font-medium">City and State Search</Heading>
 						<P color='text-gray-500 dark:text-gray-400'>If your job offer(s) range from multiple cities and states, you can use our
-						<A href="./CityOptions"class="font-medium hover:underline">city</A> and <A href="./state"class="font-medium hover:underline">state</A> search tools to research factors such as average costs of rent, groceries, utilities, water, as well as demographics and weather
+						<A href="./CityOptions"class="font-medium hover:underline">City</A> and <A href="./state"class="font-medium hover:underline">State</A> search tools to research factors such as average costs of rent, groceries, utilities, water, as well as demographics and weather
 						information that affect your job preferences.
 						</P>
-						<Heading tag="h1" class="mb-4" customSize="text-md font-medium">Job Offer Comparison</Heading>
+						<br>
+						<br>
+						<Heading tag="h1" class="mb-4" customSize="text-md font-medium">User Reviews</Heading>
 						<P color='text-gray-500 dark:text-gray-400'>SalaryMatch aims to connect its users by providing a way for them to leave reviews for both
-					    for past job locations and companies. These tools can be accessed under the <A href="./CityOptions"class="font-medium hover:underline">city</A> and 
-						<A href="./state"class="font-medium hover:underline">state</A> tabs.
+					    for past job locations and companies. These tools can be accessed under the <A href="./CityOptions"class="font-medium hover:underline">City</A> and 
+						<A href="./state"class="font-medium hover:underline">State</A> tabs.
 						</P>	
 					</div>
 			</div>
