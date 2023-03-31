@@ -1,12 +1,35 @@
 <script>
 	import './styles.css';
     import { Avatar, Button, Dropdown, DropdownItem, Search } from 'flowbite-svelte';
+    import {authToken} from '../auth'
+    import {loggedIn} from '../auth'
+    let notlogged = false;
+    let noToken="";
+    let logout = async () => {
+        const post = (await fetch("https://salarymatch.azurewebsites.net/api/logout", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            id: $authToken
+        })
+    }).then(async data => {
+        if (data.status == 200||data.status == 201) {
+            console.log("successful logout");
+            loggedIn.set(notlogged);
+            authToken.set(noToken);
+            window.location.href = "/";
+        } else {
+            console.log("fail");
+            alert("Logout Failed")
+        }
+        }).catch(err => console.log('err')));
+    }; 
 
-    let loggedIn = false;
 </script>
 
 <style>
-
     :root {
         --nav-height: 35px;
     }
@@ -15,8 +38,6 @@
             --nav-height: 27px;
         }
     }
-
-
     nav {
         width: 100%;
         background-color: var(--card-color);
@@ -50,9 +71,6 @@
         border-radius: 10px;
         background-color: #FFC187;
     }
-    /* .rightSideFlex {
-        margin-left: auto;
-    } */
     .material-symbols-outlined {
         font-size: var(--nav-height);
     }
@@ -64,18 +82,6 @@
         border-color:orange;
         border-radius: 50%;
     }
-/* 
-    .profile-icon > img {
-        width: var(--nav-height);
-        height: var(--nav-height);
-        border-radius: 50%;
-    }
-
-    .profile-icon > img:hover {
-        border-width:2px;
-        border-color:white;
-    } */
-
 </style>
 <nav>
     <div class="navItem logo">
@@ -89,49 +95,48 @@
             <Button gradient color="cyanToBlue" size="xs" >Search</Button>
         </Search>
     </div>
-    <!-- <div class="navItem">
-        <span class="material-symbols-outlined orange-hover"> search </span>
-    </div> -->
-    <div class="navItem">
-        <p class="nav-text orange-hover">
-            <a href="/createjoboffer"> Add Offer
-            </a>
-        </p>
-    </div>
-    <div class="navItem">
-        <p class="nav-text orange-hover">
-            <a href="/UpdateOffer"> Update Offers
-            </a>
-        </p>
-    </div>
-    <div class="navItem">
-        <p class="nav-text orange-hover">
-            <a href="/CityOptions"> Cities</a>
-        </p>
-    </div>
-    <div class="navItem">
-        <p class="nav-text orange-hover">
-            <a href="/companies"> Companies</a>
-        </p>
-    </div>
-    <div class="navItem">
-        <p class="nav-text orange-hover">
-            <a href="/state"> States</a>
-        </p>
-    </div>
-    <div class="navItem">
-        <p class="nav-text orange-hover">
-            <a href="/profile"> Profile</a>
-        </p>
-    </div>
-    {#if loggedIn}
-        <Avatar id="profile-pic" src="https://picsum.photos/200" alt="" class="rounded-full w-[50px] h-[50px] cursor-pointer"/>
+    {#if $loggedIn}
+        <div class="navItem">
+            <p class="nav-text orange-hover">
+                <a href="/createjoboffer"> Add Offer
+                </a>
+            </p>
+        </div>
+        <div class="navItem">
+            <p class="nav-text orange-hover">
+                <a href="/UpdateOffer"> Update Offers
+                </a>
+            </p>
+        </div>
+    {/if}
+        <div class="navItem">
+            <p class="nav-text orange-hover">
+                <a href="/CityOptions"> Cities</a>
+            </p>
+        </div>
+        <div class="navItem">
+            <p class="nav-text orange-hover">
+                <a href="/companies"> Companies</a>
+            </p>
+        </div>
+        <div class="navItem">
+            <p class="nav-text orange-hover">
+                <a href="/state"> States</a>
+            </p>
+        </div>
+    {#if $loggedIn}
+        <div class="navItem">
+            <p class="nav-text orange-hover">
+                <a href="/profile"> Profile</a>
+            </p>
+        </div>
+        <Avatar id="profile-pic" src="https://picsum.photos/200" alt="" class="rounded-full w-[50px] h-[50px] cursor-pointer mr-5"/>
         <!-- Dropdown menu -->
-        <Dropdown placement="bottom" triggeredBy="#profile-pic">
+        <Dropdown placement="bottom" triggeredBy="#profile-pic" class="justify-items-end">
             <DropdownItem><a href="/profile">My Profile</a></DropdownItem>
-            <DropdownItem on:click={() => loggedIn = false}><a href="/">Log Out</a></DropdownItem>
+            <DropdownItem on:click={logout}><a href="/">Log Out</a></DropdownItem>
         </Dropdown>
     {:else}
-        <a href="/login"><Button gradient color="cyanToBlue" size="xs" on:click={() => loggedIn = true} >Log In</Button></a>
+        <a href="/login"><Button gradient color="cyanToBlue" class="mr-5" size="xs">Log In</Button></a>
     {/if}
 </nav>
