@@ -12,25 +12,9 @@
     let submitting = false;
 
     export let data;
-    let reviews = [];
-    let meanRating;
+    const meanRating = (data.reviews.length ? data.reviews.reduce((sum, review) => sum + review.overall_rating, 0) / data.reviews.length : 0).toFixed(2);;
    
     var url = "https://salarymatch.azurewebsites.net/api/cities/" + $page.params.cityID + "/reviews";
-
-async function loading() {
-		const response = await fetch(url, {
-			method: 'GET',
-			headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + $authToken
-            },
-		});
-		reviews  = await response.json();
-        meanRating = (reviews.length ? reviews.reduce((sum, review) => sum + review.overall_rating, 0) / reviews.length : 0).toFixed(2);
-        console.log(meanRating);
-        return reviews;
-	}
-    
     
 let onReview = async () => {
         var city = $page.params.cityID;
@@ -108,21 +92,19 @@ let onReview = async () => {
 
     <h2 class="text-4xl">Reviews</h2>
     <div class="grid gap-2 grid-cols-5">
-        {#await loading() then reviews}
-            {#each reviews as review}
-                <Card>
-                    {#if review.user_id}
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white w-full">{review.user_id}</h5>
-                    {:else}
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white w-full">Anonymous</h5>
-                    {/if}
-                    <Rating total={5} rating={review.overall_rating} class="mb-5">
-                        <p slot="text" class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">{review.overall_rating} out of 5</p>
-                    </Rating>
-                    <p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">{review.comment}</p>
-                </Card>
-            {/each}
-        {/await}
+        {#each data.reviews as review}
+            <Card>
+                {#if review.user_id}
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white w-full">{review.user_id}</h5>
+                {:else}
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white w-full">Anonymous</h5>
+                {/if}
+                <Rating total={5} rating={review.overall_rating} class="mb-5">
+                    <p slot="text" class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">{review.overall_rating} out of 5</p>
+                </Rating>
+                <p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">{review.comment}</p>
+            </Card>
+        {/each}
     </div>
 </div>
 
