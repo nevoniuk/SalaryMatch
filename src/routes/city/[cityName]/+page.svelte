@@ -1,9 +1,13 @@
 <script>
 	import PopulationBar from "./PopulationBar.svelte";
     import WeatherGraph from "./WeatherGraph.svelte";
-    import {Heading} from 'flowbite-svelte';
+    import {Button, Heading} from 'flowbite-svelte';
     import Menu from "../../Menu.svelte";
     export let data;
+    import { onMount } from 'svelte';
+	import { get } from 'svelte/store';
+    import { page } from '$app/stores';
+	/** @type {import('./$types').PageData} */
     let months = [data.city.avg_temp_jan, data.city.avg_temp_feb, data.city.avg_temp_march, data.city.avg_temp_april,
             data.city.avg_temp_may, data.city.avg_temp_june, data.city.avg_temp_july, data.city.avg_temp_aug, data.city.avg_temp_sept,
             data.city.avg_temp_oct, data.city.avg_temp_nov, data.city.avg_temp_dec];
@@ -85,9 +89,16 @@
         font-size: 10px;
     }
 
+    .header {
+        display: flex;
+        align-content: space-around;
+    }
 </style>
 
-<h1 class="city-title">{data.city.name}</h1>
+<div class="header">
+    <h1 class="city-title">{data.city.name}</h1>
+    <Button href="/cityReview/{$page.params.cityName}">Leave A Review</Button>
+</div>
 <div class="card">
     <!-- <div class="city-img-container"> -->
         <!-- <img class="city-img" src="https://via.placeholder.com/200"/> -->
