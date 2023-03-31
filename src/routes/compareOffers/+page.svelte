@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Heading, P, A, Label, Input, Button } from 'flowbite-svelte'
+	import { Heading, P, A, Label, Input, Button, Card } from 'flowbite-svelte'
 	import { onMount } from 'svelte';
 	import { each } from 'svelte/internal';
 	import { get } from 'svelte/store'
@@ -73,18 +73,23 @@
         offerTwo = offer;
     };
 
-    let comparisonResult:JobOfferComparison = null;
+    let comparisonResult:any = null;
 	let comparisonKeys = [];
 
     let sendOffer = async () => {
 
-		// let result = await fetch("https://salarymatch.azurewebsites.net/api/joboffers/compare", {
-		// 	method: "GET",
-		// 	body: JSON.stringify({
-		// 		offer1ID: offerOne.ID, offer2ID: offerTwo.ID
-		// 	})
-		// });
-		// console.log(result);
+		console.log(authToken);
+
+		let result = await fetch("https://salarymatch.azurewebsites.net/api/joboffers/compare", {
+			method: "POST",
+			headers: {
+				'Content-Type': 'application/json',
+				"Authorization": "Bearer " + $authToken
+			},
+			body: JSON.stringify({
+				offer1ID: offerOne.id, offer2ID: offerTwo.id
+			})
+		});
         comparisonResult = {
             offer1ID: "o1ID",
             offer2ID: "o2ID",
@@ -99,6 +104,9 @@
             offer1SalaryMatch: false,
             offer2SalaryMatch: true,
         };
+
+		comparisonResult = await result.json();
+		console.log(comparisonResult);
 
 		let rawComparisonKeys = Object.keys(comparisonResult);
 		rawComparisonKeys.forEach(rawComparisonKey => {
@@ -127,41 +135,18 @@
 		<div class="slider">
 			{#await loading() then data}
 				{#each data as offer}
-					<section>
-						<div class= "titleAndEdit">
-							<div class="offeritem">
-								<p>
-									Title: {offer.title}
-								</p>
-							</div>
+					<Card class="flex-col justify-end bg-purple-300 mx-5 w-[500px] mb-0">
+						<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Title: {offer.title}</h5>
+						<div class="mb-5 h-fit">
+							<p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">Company: {offer.company}</p>
+							<p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">Location: {offer.city_id}, {offer.state_id}</p>
+							<p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">Base Salary: ${offer.salary}</p>
+							<p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">Bonuses: ${offer.signing_bonus}</p>
+							<p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">Relocation: ${offer.relocation_bonus}</p>
 						</div>
-						<div class="offeritem">
-							<p>
-								Company: {offer.company}
-							</p>
-						</div>
-						<div class="offeritem">
-							<p>
-								Location: {offer.city_id}, {offer.state_id}
-							</p>
-						</div>
-						<div class="offeritem">
-							<p>
-								Salary: {offer.salary}
-							</p>
-						</div>
-						<div class="offeritem">
-							<p>
-								Sign-on bonus: {offer.signing_bonus}
-							</p>
-						</div>
-						<div class="offeritem">
-							<p>
-								Relocation Bonus: {offer.relocation_bonus}
-							</p>
-						</div>
+	
                         <input type=checkbox bind:checked={offerChecked[offer.id]} on:change={() => {onOfferSelected(offer)}}/>
-					</section>
+					</Card>
 				{/each}
 			{/await}
 		</div>
