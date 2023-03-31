@@ -1,12 +1,12 @@
 <script>
     import {authToken} from '../../../auth';
-
-    import { Rating, Textarea, Button, Toolbar, ToolbarButton, Checkbox, Card, Spinner } from 'flowbite-svelte';
+    import { Rating, Textarea, Button, Toolbar, ToolbarButton, Toggle, Card, Spinner } from 'flowbite-svelte';
 
     export let data;
     let is_anonymous = false;
 
     const meanRating = (data.companyReviews.length ? data.companyReviews.reduce((sum, review) => sum + review.overall_rating, 0) / data.companyReviews.length : 0).toFixed(2);
+    const profanity = ["profanity", "IU"]
 
     let overall_rating = 1;
     let comment = "";
@@ -17,6 +17,9 @@
         var company_id = data.company.id;
         var url = "https://salarymatch.azurewebsites.net/api/companies/" + company_id + "/reviews";
         submitting = true;
+
+        profanity.forEach((cuss) => comment = comment.replaceAll(cuss, "****"))
+
         const post = (await fetch(url, {
             method: "POST",
             headers: {
@@ -62,7 +65,7 @@
                     <Toolbar embedded>
                         <div class="flex items-center">
                             {#each Array(5) as _, index}
-                                <svg on:click={() => overall_rating = index + 1} aria-hidden="true" class="w-5 h-5 {overall_rating > index ? "text-yellow-400" : "text-gray-500 dark:text-gray-500"}" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>First star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                <svg on:click={() => overall_rating = index + 1} aria-hidden="true" class="w-5 h-5 cursor-pointer {overall_rating > index ? "text-yellow-400" : "text-gray-500 dark:text-gray-500"}" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>First star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                             {/each}
                             <p class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">{overall_rating} out of 5</p>
                         </div>
@@ -70,12 +73,12 @@
                 </div>
                 <div slot="footer" class="flex items-center justify-between">
                     {#if submitting}
-                        <Button>Posting...<Spinner class="ml-2"/></Button>
+                        <Button disabled>Posting...<Spinner class="ml-4" size="4" color="white"/></Button>
                     {:else}
                         <Button type="submit">Post comment</Button>
                     {/if}
                     <Toolbar embedded>
-                        <ToolbarButton name="Anonymous" on:click={() => is_anonymous = !is_anonymous}>Post Anonymously<Checkbox checked={is_anonymous} class="ml-2"/></ToolbarButton>
+                        <ToolbarButton name="Anonymous" class="cursor-pointer"><Toggle checked={is_anonymous} on:click={() => is_anonymous = !is_anonymous} class="ml-2 cursor-pointer">Post Anonymously</Toggle></ToolbarButton>
                     </Toolbar>
                 </div>
             </Textarea>
