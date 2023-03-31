@@ -77,13 +77,6 @@
 </script>
 
 <style>
-    .city-title {
-        margin: 40px;
-        margin-left: 60px;
-        text-align: left;
-        font-size: 40px;
-    }
-
     .card {
         width: 100%;
         background-color: green;
@@ -94,42 +87,26 @@
         justify-content: center;
         flex-wrap: wrap;
     }
-    .city-img {
-        transform: rotate(-4deg) translate(0px, 20px);
-        margin-bottom: 30px;
-        margin-left: 20px;
-    }
-    .city-img-container {
-        width: 250px;
-        height: 250px;
+    .graph {
         margin-right: 20px;
     }
-    .groceries {
-        display: flex;
-		flex-wrap: wrap;
-    }
-    
-    .demographics {
-        margin-right: 20px;
-    }
-    .weather {
-        display: flex;
-        align-content: space-between;
-        margin-top: 50px;
-    }
-    .graph {margin-right: 20px;}
-    .temp {
-        font-size: 20px;
-        margin-right: 3px;
-    }
+  
     .material-symbols-outlined {
         font-size: 10px;
+    }
+    .review-button {
+        width: 100px;
+        margin-left: 20px;
+        margin-right: 10px;
     }
 </style>
 
 <div class="flex flex-col gap-5 mt-5">
     <div class="flex flex-row justify-around items-center">
         <h1 class="text-9xl">{data.city.name}</h1>
+        <div class="review-button">
+            <Button outline href="/cityReview/{$page.params.cityName}"> Reviews </Button>
+        </div>
         <iframe
             title={"Map of " + data.city.name}
             width="1000"
@@ -141,7 +118,7 @@
             src={"https://www.google.com/maps/embed/v1/place?q=" + data.city.name.replaceAll(" ", "+") + "&maptype=satellite&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"}
         ></iframe>
     </div>
-    <Button color="Alternative" href="/cityReview/{$page.params.cityName}"> Review </Button>
+    
     <Table>
         <TableHead>
             <TableHeadCell>Category</TableHeadCell>
