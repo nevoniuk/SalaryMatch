@@ -12,8 +12,8 @@
         "temperature": {name: "Temperature", options: ["Hot", "Mild", "Cold"], onOptionSelected: null},
         "humidity": {name: "Humidity", options: ["Wet", "Mild", "Dry"], onOptionSelected: null},
         "sunlight": {name: "Sunlight", options: ["Sunny", "Mild", "Shady"], onOptionSelected: null},
-        "demographics": {name: "Demographics", options: ["A", "B", "C"], onOptionSelected: null},
-        "salary": {name: "Salary", options: ["4 Figure", "5 Figure", "6 Figure"], onOptionSelected: null},
+        "demographics": {name: "Demographics", options: ["Young", "Old"], onOptionSelected: null},
+        "salary": {name: "Salary", options: ["Over 50,000", "Over 100,000", "Over 200,000"], onOptionSelected: null},
         "pto": {name: "PTO", options: ["High", "Medium", "Low"], onOptionSelected: null}
     };
 
@@ -24,7 +24,7 @@
 
     let onSave = async () => {
         const post = (await fetch("https://salarymatch.azurewebsites.net/api/users", {
-            method: "POST",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + $authToken
@@ -33,7 +33,7 @@
                 temperature_preference: preferences["temperature"],
                 humidity_preference: preferences["humidity"],
                 sunlight_preference: preferences["sunlight"],
-                demographics_preference: preferences["demographics"],
+                demographic_preference: preferences["demographics"],
                 salary_preference: preferences["salary"],
                 pto_preference: preferences["pto"]
             })

@@ -77,17 +77,6 @@
         align-items: center;
         justify-content: center;
 	}
-	.card {
-        width: 100%;
-        background-color: green;
-        display: flex;
-        padding: 30px;
-        background-color: var(--card-color);
-        box-shadow: 2px 2px 4px 0px rgba(34, 17, 66,0.4);
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
     .button {
         background-color:rgb(142, 134, 230);
         padding: 5px;
