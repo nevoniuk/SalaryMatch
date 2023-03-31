@@ -23,6 +23,10 @@
     );
 
     export let data;
+    import { onMount } from 'svelte';
+	import { get } from 'svelte/store';
+    import { page } from '$app/stores';
+	/** @type {import('./$types').PageData} */
     let months = [data.city.avg_temp_jan, data.city.avg_temp_feb, data.city.avg_temp_march, data.city.avg_temp_april,
             data.city.avg_temp_may, data.city.avg_temp_june, data.city.avg_temp_july, data.city.avg_temp_aug, data.city.avg_temp_sept,
             data.city.avg_temp_oct, data.city.avg_temp_nov, data.city.avg_temp_dec];
@@ -70,9 +74,17 @@
         justify-content: center;
         flex-wrap: wrap;
     }
-    .graph {margin-right: 20px;}
+    .graph {
+        margin-right: 20px;
+    }
+  
     .material-symbols-outlined {
         font-size: 10px;
+    }
+    .review-button {
+        width: 100px;
+        margin-left: 20px;
+        margin-right: 10px;
     }
 </style>
 
@@ -81,6 +93,9 @@
         <div class="flex flex-col gap-5">
             <h1 class="text-9xl">{data.city.name}</h1>
             <AggregateCosts data={data} />
+            <div class="review-button">
+                <Button outline href="/cityReview/{$page.params.cityName}"> Reviews </Button>
+            </div>
         </div>
         <iframe
             title={"Map of " + data.city.name}
@@ -93,6 +108,7 @@
             src={"https://www.google.com/maps/embed/v1/place?q=" + data.city.name.replaceAll(" ", "+") + "&maptype=satellite&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"}
         ></iframe>
     </div>
+    
     <Table>
         <TableHead>
             <TableHeadCell>Category</TableHeadCell>
