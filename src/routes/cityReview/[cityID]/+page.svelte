@@ -12,7 +12,7 @@
     let submitting = false;
 
     export let data;
-    const meanRating = (data.reviews.length ? data.reviews.reduce((sum, review) => sum + review.overall_rating, 0) / data.reviews.length : 0).toFixed(2);;
+    const meanRating = (data.reviews.length ? data.reviews.reduce((sum, review) => sum + review.overall_rating, 0) / data.reviews.length : 0).toFixed(2);
    
     var url = "https://salarymatch.azurewebsites.net/api/cities/" + $page.params.cityID + "/reviews";
     
