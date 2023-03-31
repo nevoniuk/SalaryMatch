@@ -102,6 +102,3 @@
 		</Accordion>
 	</div>
 </div>
-
-<style>
-</style>
