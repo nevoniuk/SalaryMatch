@@ -108,6 +108,13 @@
                 </a>
             </p>
         </div>
+        <div class="navItem">
+            <p class="nav-text orange-hover">
+                <a href="/compareOffers"> Compare Offers
+                </a>
+            </p>
+        </div>
+
     {/if}
         <div class="navItem">
             <p class="nav-text orange-hover">
