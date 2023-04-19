@@ -1,5 +1,5 @@
 <script>
-	import './styles.css';
+    import './styles.css';
     import { Avatar, Button, Dropdown, DropdownItem, Search } from 'flowbite-svelte';
     import {authToken} from '../auth'
     import {loggedIn} from '../auth'
@@ -85,15 +85,13 @@
 </style>
 <nav>
     <div class="navItem logo">
-		<a href="/"><img src="/salary_match_logo.png" alt="" /></a>
+        <a href="/"><img src="/salary_match_logo.png" alt="" /></a>
     </div>
     <div class="navItem">
         <a href="/"><span class="material-symbols-outlined orange-hover"> home </span></a>
     </div>
     <div class="w-[50%] mr-auto">
-        <Search size="md">
-            <Button gradient color="cyanToBlue" size="xs" >Search</Button>
-        </Search>
+        
     </div>
     {#if $loggedIn}
         <div class="navItem">
@@ -111,6 +109,12 @@
         <div class="navItem">
             <p class="nav-text orange-hover">
                 <a href="/compareOffers"> Compare Offers
+                </a>
+            </p>
+        </div>
+        <div class="navItem">
+            <p class="nav-text orange-hover">
+                <a href="/compareUserOffers"> Compare User Offers
                 </a>
             </p>
         </div>
