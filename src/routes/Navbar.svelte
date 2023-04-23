@@ -114,7 +114,7 @@
         </div>
         <div class="navItem">
             <p class="nav-text orange-hover">
-                <a href="/compareUserOffers"> Compare User Offers
+                <a href="/CompareWithOthers"> Compare With Others
                 </a>
             </p>
         </div>

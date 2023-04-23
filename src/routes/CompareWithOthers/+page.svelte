@@ -94,7 +94,9 @@
 
 </script>
 
-
+<svelte:head>
+	<title>Compare With Others Page</title>
+</svelte:head>
 
 <main>
     <div class = 'title'>
@@ -162,7 +164,7 @@
                                         </div>
                                     {:else}
                                         <div class = 'rightitem'>
-                                            <Heading tag="h3" customSize="text-l font-bold">No Available Data For {offerSelected.city_id}
+                                            <Heading tag="h3" customSize="text-l font-bold">No Available Data For {offerSelected.title} in {offerSelected.city_id}
                                             </Heading>
                                         </div>
                                     {/if}
@@ -189,7 +191,7 @@
                                                 </div>
                                             {:else}
                                                 <div class = 'rightitem'>
-                                                    <Heading tag="h3" customSize="text-l font-bold ">No Available Data For {offerSelected.city_id}
+                                                    <Heading tag="h3" customSize="text-l font-bold ">No Available Data For {offerSelected.title} in {offerSelected.city_id}
                                                     </Heading>
                                                 </div>
                                             {/if}
@@ -225,7 +227,7 @@
                                     </div>
                                 {:else}
                                     <div class = 'rightitem'>
-                                        <Heading tag="h3" class = " text-gray-900 dark:text-red-800" customSize="text-l font-bold">No Available Data for {offerSelected.company}
+                                        <Heading tag="h3" class = " text-gray-900 dark:text-red-800" customSize="text-l font-bold">No Available Data for {offerSelected.title} at {offerSelected.company}
                                         </Heading>
                                     </div>
                                 {/if}
@@ -244,15 +246,15 @@
                                 <div class = 'sub-container'>
                                         <div class = 'leftitem'>
                                             <Heading tag="h3" customSize="text-l font-bold ">{Math.round(updatedComp)}</Heading>
-                                            <p style="margin-left: 5px;">{updatedComp > comparisonResult.sameCompanyAvgTotalCompensation? "✓" : "x"}</p>
+                                            <p style="margin-left: 5px;">{updatedComp > comparisonResult.sameCompanyAvgTotalCompensationWithLivingCosts? "✓" : "x"}</p>
                                         </div>
-                                        {#if comparisonResult.sameCompanyAvgTotalCompensation != updatedComp}
+                                        {#if comparisonResult.sameCompanyAvgTotalCompensationWithLivingCosts != updatedComp}
                                             <div class = 'rightitem'>
-                                                <Heading tag="h3" customSize="text-l font-bold ">{Math.round(comparisonResult.sameCompanyAvgTotalCompensation)}</Heading>
+                                                <Heading tag="h3" customSize="text-l font-bold ">{Math.round(comparisonResult.sameCompanyAvgTotalCompensationWithLivingCosts)}</Heading>
                                             </div>
                                         {:else}
                                             <div class = 'rightitem'>
-                                                <Heading tag="h3" customSize="text-l font-bold ">No Available Data for {offerSelected.company}</Heading>
+                                                <Heading tag="h3" customSize="text-l font-bold ">No Available Data for {offerSelected.title} at {offerSelected.company}</Heading>
                                             </div>
                                         {/if}
                                 </div>
@@ -297,7 +299,7 @@
     .subtitle {
         position: absolute;
         top: 250px;
-        left:10px;
+        left: 10px;
     }
 
     .slidercontainer {
@@ -332,7 +334,7 @@
     .card {
         flex: 1;
         width: 400px;
-        height: 450px;
+        height: 500px;
         background-image: linear-gradient(to right, rgb(188, 181, 223), white);
         border-radius: 4px;
         box-shadow: 1px 1px 3px 0px rgba(34, 17, 66,0.4);
