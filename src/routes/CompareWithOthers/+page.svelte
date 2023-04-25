@@ -146,21 +146,21 @@
                             </div>
                             <div class = 'sub-container'>
                                 <div class = 'leftitem' >
-                                    <Heading tag="h3" customSize="text-l font-bold ">Your Offer Compensation</Heading>
+                                    <Heading style="background-color:white; padding: 5px; border-radius: 5px;" tag="h3" customSize="text-l font-bold ">Your Offer Compensation</Heading>
                                 </div>
                                 <div class = 'rightitem'>
-                                    <Heading tag="h3" customSize="text-l font-bold ">Average Compensation</Heading>
+                                    <Heading style="background-color:white; padding: 5px; border-radius: 5px;" tag="h3" customSize="text-l font-bold ">Average Compensation</Heading>
                                 </div>
                             </div>
                             <div class = 'sub-container'>
                                 {#if loadedAverage == true}
                                     <div class = 'leftitem'>
-                                        <Heading tag="h3" customSize="text-l font-bold ">{usertotalcomp}</Heading>
+                                        <Heading tag="h3" customSize="text-l font-bold ">{Math.round(usertotalcomp)}</Heading>
                                         <p style="margin-left: 5px;">{usertotalcomp > comparisonResult.sameCityAvgTotalCompensation? "✓" : "x"}</p>
                                     </div>
                                     {#if comparisonResult.sameCityAvgTotalCompensation != usertotalcomp}
                                         <div class = 'rightitem'>
-                                            <Heading tag="h3" customSize="text-l font-bold ">{comparisonResult.sameCityAvgTotalCompensation}</Heading>
+                                            <Heading tag="h3" customSize="text-l font-bold ">{Math.round(comparisonResult.sameCityAvgTotalCompensation)}</Heading>
                                         </div>
                                     {:else}
                                         <div class = 'rightitem'>
@@ -174,10 +174,10 @@
                                 {#await loadingCityData() then data}
                                     <div class = 'sub-container'>
                                         <div class = 'leftitem' style="margin-left: 25px;">
-                                            <Heading tag="h3" customSize="text-l font-bold ">Your Offer Compensation with Living Costs</Heading>
+                                            <Heading style="background-color:white; padding: 5px; border-radius: 5px;" tag="h3" customSize="text-l font-bold ">Your Offer Compensation with Living Costs</Heading>
                                         </div>
                                         <div class = 'rightitem'>
-                                            <Heading tag="h3" customSize="text-l font-bold ">Average Compensation with Living Costs</Heading>
+                                            <Heading style="background-color:white; padding: 5px; border-radius: 5px;" tag="h3" customSize="text-l font-bold ">Average Compensation with Living Costs</Heading>
                                         </div>
                                     </div>
                                     <div class = 'sub-container'>
@@ -209,21 +209,21 @@
                         </div>
                         <div class = 'sub-container'>
                             <div class = 'leftitem'>
-                                <Heading tag="h3" customSize="text-l font-bold ">Your Offer Compensation</Heading>
+                                <Heading style="background-color:white; padding: 5px; border-radius: 5px;" tag="h3" customSize="text-l font-bold ">Your Offer Compensation</Heading>
                             </div>
                             <div class = 'rightitem'>
-                                <Heading tag="h3" customSize="text-l font-bold ">Average Compensation</Heading>
+                                <Heading style="background-color:white; padding: 5px; border-radius: 5px;" tag="h3" customSize="text-l font-bold ">Average Compensation</Heading>
                             </div>
                         </div>
                         <div class = 'sub-container'>
                             {#if loadedAverage == true}
                                 <div class = 'leftitem'>
-                                    <Heading tag="h3" customSize="text-l font-bold ">{usertotalcomp}</Heading>
+                                    <Heading tag="h3" customSize="text-l font-bold ">{Math.round(usertotalcomp)}</Heading>
                                     <p style="margin-left: 5px;">{usertotalcomp > comparisonResult.sameCompanyAvgTotalCompensation? "✓" : "x"}</p>
                                 </div>
                                 {#if comparisonResult.sameCompanyAvgTotalCompensation != usertotalcomp}
                                     <div class = 'rightitem'>
-                                        <Heading tag="h3" customSize="text-l font-bold ">{comparisonResult.sameCompanyAvgTotalCompensation}</Heading>
+                                        <Heading tag="h3" customSize="text-l font-bold ">{Math.round(comparisonResult.sameCompanyAvgTotalCompensation)}</Heading>
                                     </div>
                                 {:else}
                                     <div class = 'rightitem'>
@@ -237,10 +237,10 @@
                             {#await loadingCityData() then data}
                                 <div class = 'sub-container'>
                                     <div class = 'leftitem' style="margin-left: 25px;">
-                                        <Heading tag="h3" customSize="text-l font-bold ">Your Offer Compensation with Living Costs</Heading>
+                                        <Heading style="background-color:white; padding: 5px; border-radius: 5px;" tag="h3" customSize="text-l font-bold ">Your Offer Compensation with Living Costs</Heading>
                                     </div>
                                     <div class = 'rightitem'>
-                                        <Heading tag="h3" customSize="text-l font-bold ">Average Compensation with Living Costs</Heading>
+                                        <Heading style="background-color:white; padding: 5px; border-radius: 5px;" tag="h3" customSize="text-l font-bold ">Average Compensation with Living Costs</Heading>
                                     </div>
                                 </div>
                                 <div class = 'sub-container'>
@@ -333,8 +333,7 @@
 
     .card {
         flex: 1;
-        width: 400px;
-        height: 500px;
+        
         background-image: linear-gradient(to right, rgb(188, 181, 223), white);
         border-radius: 4px;
         box-shadow: 1px 1px 3px 0px rgba(34, 17, 66,0.4);
@@ -350,7 +349,6 @@
     .container {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
     }
 
     .sub-container {
@@ -364,11 +362,15 @@
     .leftitem {
         margin-left: 25px;
         display:flex;
+        width: 200px;
         flex-direction: row;
+        
     }
 
     .rightitem {
-        margin-left: 100px;
+        width: 200px;
+        margin-right: 25px;
+        margin-left: 50px;
         justify-content: center;
     }
 </style>
