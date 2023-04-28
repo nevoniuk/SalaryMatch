@@ -162,7 +162,6 @@
 	
 	.textarea {
 		margin-top: 30px;
-		//height: 50px;
 		scroll-snap-align: start;
 		text-align: center;
 		position: relative;

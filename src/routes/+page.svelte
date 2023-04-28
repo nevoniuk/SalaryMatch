@@ -10,6 +10,20 @@
 		_mainWordsIndex = (_mainWordsIndex + 1) % _mainWords.length;
 		_mainWord = _mainWords[_mainWordsIndex];
 	}, 5000)
+
+	const _dataSources = [
+		{ title: "Restaurants", icon: "https://cdn-icons-png.flaticon.com/512/308/308556.png", urls: ["https://www.wallethub.com/edu/best-foodie-cities/7522"] },
+		{ title: "Company Demographics", icon: "https://cdn-icons-png.flaticon.com/512/5835/5835234.png", urls: ["https://www.visualcapitalist.com/visualizing-diversity-tech-industry/"] },
+		{ title: "School Rankings", icon: "https://cdn-icons-png.flaticon.com/512/3074/3074058.png", urls: ["https://www.worldpopulationreview.com/state-rankings/public-school-rankings-by-state"] },
+		{ title: "Weather Trends", icon: "https://cdn-icons-png.flaticon.com/512/2932/2932445.png", urls: ["https://www.weatherapi.com/"] },
+		{ title: "Crime", icon: "https://cdn-icons-png.flaticon.com/512/3208/3208803.png", urls: ["https://www.ucr.fbi.gov/crime-in-the-u.s/2019/crime-in-the-u.s.-2019/tables/table-8/table-8.xls/view"] },
+		{ title: "Cannabis", icon: "https://cdn-icons-png.flaticon.com/512/2160/2160434.png", urls: ["https://www.ncsl.org/health/state-medical-cannabis-laws"] },
+		{ title: "Abortion", icon: "https://cdn-icons-png.flaticon.com/512/7214/7214915.png", urls: ["https://www.reproductiverights.org/maps/abortion-laws-by-state/"] },
+		{ title: "Life Expectancy", icon: "https://cdn-icons-png.flaticon.com/512/5141/5141209.png", urls: ["https://www.countyhealthrankings.org/explore-health-rankings/county-health-rankings-model/health-outcomes/length-of-life/life-expectancy?year=2023"] },
+		{ title: "Taxes", icon: "https://cdn-icons-png.flaticon.com/512/4334/4334610.png", urls: ["https://taxfoundation.org/2022-sales-tax-rates-midyear/"] },
+		{ title: "Internet", icon: "https://cdn-icons-png.flaticon.com/512/748/748151.png", urls: ["https://www.broadbandsearch.net/blog/internet-cost-by-state"] },
+		{ title: "Rent, Utilities, Population, Groceries", icon: "https://cdn-icons-png.flaticon.com/512/2590/2590451.png", urls: ["https://www.census.gov/programs-surveys/ahs.html"] }
+	]
 </script>
 
 <svelte:head>
@@ -53,52 +67,19 @@
 	<div class="flex flex-col text-4xl m-[5%] gap-5">
 		<div>Freshly picked data.</div>
 		<Accordion>
-			<AccordionItem>
-				<span slot="header" class="flex gap-2 text-3xl text-green-500">
-					<img src="https://cdn-icons-png.flaticon.com/512/2914/2914767.png" alt="" class="w-8 h-8">
-					<span>Salaries</span>
-				</span>
-				<p class="mb-2 text-gray-500 dark:text-gray-400 text-xl">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo ab necessitatibus sint explicabo...
-				</p>
-			</AccordionItem>
-			<AccordionItem>
-				<span slot="header" class="flex gap-2 text-3xl text-red-500">
-					<img src="https://cdn-icons-png.flaticon.com/512/846/846347.png" alt="" class="w-8 h-8">
-					<span>Gas</span>
-				</span>
-				<p class="mb-2 text-gray-500 dark:text-gray-400 text-xl">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo ab necessitatibus sint explicabo...
-				</p>
-			</AccordionItem>
-			<AccordionItem>
-				<span slot="header" class="flex gap-2 text-3xl text-purple-500">
-					<img src="https://cdn-icons-png.flaticon.com/512/5835/5835234.png" alt="" class="w-8 h-8">
-					<span>Demographics</span>
-				</span>
-				<p class="mb-2 text-gray-500 dark:text-gray-400 text-xl">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo ab necessitatibus sint explicabo...
-				</p>
-			</AccordionItem>
-			<AccordionItem>
-				<span slot="header" class="flex gap-2 text-3xl text-blue-500">
-					<img src="https://cdn-icons-png.flaticon.com/512/4334/4334610.png" alt="" class="w-8 h-8">
-					<span>Taxes</span>
-				</span>
-				<p class="mb-2 text-gray-500 dark:text-gray-400 text-xl">
-					We gather our tax data from the 2022 sales tax rates from <a href="https://taxfoundation.org/2022-sales-tax-rates-midyear/" class="text-blue-500">taxfoundation.org</a>.
-				</p>
-			</AccordionItem>
-			<AccordionItem>
-				<span slot="header" class="flex gap-2 text-3xl text-pink-500">
-					<img src="https://cdn-icons-png.flaticon.com/512/2721/2721688.png" alt="" class="w-8 h-8">
-					<span>Internet</span>
-				</span>
-				<p class="mb-2 text-gray-500 dark:text-gray-400 text-xl">
-					This data is aggregated across data points from <a href="https://www.broadbandsearch.net/blog/internet-cost-by-state" class="text-blue-500">broadbandsearch.net</a>
-					and <a href="https://broadbandnow.com/research/best-states-with-internet-coverage-and-speed" class="text-blue-500">braodbandnow.com</a>.
-				</p>
-	</AccordionItem>
+			{#each _dataSources as dataSource}
+				<AccordionItem>
+					<span slot="header" class="text-base flex gap-2">
+						<img src={dataSource.icon} alt="" class="w-6 h-6" />
+						<span>{dataSource.title}</span>
+					</span>
+					<p class="text-base">We sourced our {dataSource.title} data from
+						{#each dataSource.urls as url}
+							<a class="text-blue-500" href={url}>{url}</a>.
+						{/each}
+					</p>
+				</AccordionItem>
+  			{/each}
 		</Accordion>
 	</div>
 	<div class="customerSupport">

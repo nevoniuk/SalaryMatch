@@ -41,10 +41,20 @@
 			<input type="text" name="enterdState" placeholder="Enter State" on:input={onChange}/>
 		</form>
 	</div>
-	<div class="grid grid-cols-8 gap-5">
+	<div class="grid grid-cols-5 gap-5">
 		{#each states as state}
 			<Card href={"/state/" + state.id}>
 				<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{state.name}</h5>
+				<iframe
+					title={"Map of " + state.name}
+					width="300"
+					height="300"
+					frameborder="0"
+					scrolling="no"
+					marginheight="0"
+					marginwidth="0"
+					src={"https://www.google.com/maps/embed/v1/place?q=" + state.name.replaceAll(" ", "+") + "+the+state&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"}
+				></iframe>
 			</Card>
 		{/each}
 	</div>

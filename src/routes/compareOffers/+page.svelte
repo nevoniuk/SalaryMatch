@@ -1,8 +1,5 @@
 <script lang="ts">
-	import { Heading, P, A, Label, Input, Button, Card } from 'flowbite-svelte'
-	import { onMount } from 'svelte';
-	import { each } from 'svelte/internal';
-	import { get } from 'svelte/store'
+	import { Heading, Button, Card } from 'flowbite-svelte'
 	/** @type {import('./$types').PageData} */
 
     interface JobOfferComparison {
@@ -19,7 +16,6 @@
         offer2SalaryMatch: boolean
     }
 
-	export let data;
 	import {authToken} from '../../auth'
 	console.log($authToken);
 	let url = 'https://salarymatch.azurewebsites.net/api/joboffers';
@@ -204,10 +200,6 @@
 		padding-left: 15px;
 		padding-right: 8px;
     }
-
-	.material-symbols-outlined {
-        font-size: 20px;
-    }
 	.title {
 			position: absolute;
 			top: 100px;
@@ -222,7 +214,6 @@
 		top:300px;
 		position: absolute;
 	}
-
 	.slider {
 		font-family: sans-serif;
 		scroll-snap-type: x mandatory;	
@@ -230,33 +221,5 @@
 		-webkit-overflow-scrolling: touch;
 		overflow-x: scroll;
 		
-	}
-	
-	section {
-		background-color: rgb(188, 181, 223);
-		border-radius: 4px;
-        box-shadow: 1px 1px 3px 0px rgba(34, 17, 66,0.4);
-		margin-right: 15px;
-		min-width: 20vw;
-		height: 30vh;
-		scroll-snap-align: start;
-		text-align: center;
-		position: relative;
-		
-	}
-	.offeritem {
-		color:black;
-	}
-	.orange-hover:hover {
-        border-radius: 10px;
-        background-color: #FFC187;
-    }
-	.titleAndEdit {
-		display:flex;
-		flex-direction: row;
-		justify-content: space-between;
-	}
-	.material-symbols {
-		font-size: 20px;
 	}
 </style>

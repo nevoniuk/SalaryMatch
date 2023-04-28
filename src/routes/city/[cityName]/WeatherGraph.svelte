@@ -96,9 +96,6 @@ while (count < 12) {
 		position: absolute;
 		width: 15px;
 	}
-	data-point-value {
-		font-size: 10px;
-	}
 	.month-labels {
 		display:flex;
 		flex-direction: row;

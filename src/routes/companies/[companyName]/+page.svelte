@@ -60,19 +60,34 @@
 </script>
 
 <div class="flex flex-col gap-12">
-    <div>
-        <h1 class="w-fit justify-start text-9xl">{data.company.name}</h1>
-        <Rating total={5} rating={meanRating}>
-            <span slot="ratingUp">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="text-blue-600 dark:text-blue-400" aria-label="star" fill="none" viewBox="0 0 24 24" stroke-width="2"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.7881 3.2108C11.2364 2.13286 12.7635 2.13286 13.2118 3.2108L15.2938 8.21652L20.6979 8.64976C21.8616 8.74306 22.3335 10.1953 21.4469 10.9549L17.3295 14.4818L18.5874 19.7553C18.8583 20.8909 17.6229 21.7884 16.6266 21.1799L11.9999 18.354L7.37329 21.1799C6.37697 21.7884 5.14158 20.8909 5.41246 19.7553L6.67038 14.4818L2.55303 10.9549C1.66639 10.1953 2.13826 8.74306 3.302 8.64976L8.70609 8.21652L10.7881 3.2108Z" fill="currentColor"></path> </svg>
-            </span>
-            <span slot="ratingDown">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="text-gray-500 dark:text-blue-400" aria-label="star" fill="none" viewBox="0 0 24 24" stroke-width="2"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.7881 3.2108C11.2364 2.13286 12.7635 2.13286 13.2118 3.2108L15.2938 8.21652L20.6979 8.64976C21.8616 8.74306 22.3335 10.1953 21.4469 10.9549L17.3295 14.4818L18.5874 19.7553C18.8583 20.8909 17.6229 21.7884 16.6266 21.1799L11.9999 18.354L7.37329 21.1799C6.37697 21.7884 5.14158 20.8909 5.41246 19.7553L6.67038 14.4818L2.55303 10.9549C1.66639 10.1953 2.13826 8.74306 3.302 8.64976L8.70609 8.21652L10.7881 3.2108Z" fill="currentColor"></path> </svg>
-            </span>
-            <p slot="text" class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">{meanRating} out of 5</p>
-        </Rating>
+    <h1 class="w-fit justify-start text-9xl">{data.company.name}</h1>
+    <Rating total={5} rating={+meanRating}>
+        <span slot="ratingUp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="text-blue-600 dark:text-blue-400" aria-label="star" fill="none" viewBox="0 0 24 24" stroke-width="2"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.7881 3.2108C11.2364 2.13286 12.7635 2.13286 13.2118 3.2108L15.2938 8.21652L20.6979 8.64976C21.8616 8.74306 22.3335 10.1953 21.4469 10.9549L17.3295 14.4818L18.5874 19.7553C18.8583 20.8909 17.6229 21.7884 16.6266 21.1799L11.9999 18.354L7.37329 21.1799C6.37697 21.7884 5.14158 20.8909 5.41246 19.7553L6.67038 14.4818L2.55303 10.9549C1.66639 10.1953 2.13826 8.74306 3.302 8.64976L8.70609 8.21652L10.7881 3.2108Z" fill="currentColor"></path> </svg>
+        </span>
+        <span slot="ratingDown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="text-gray-500 dark:text-blue-400" aria-label="star" fill="none" viewBox="0 0 24 24" stroke-width="2"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.7881 3.2108C11.2364 2.13286 12.7635 2.13286 13.2118 3.2108L15.2938 8.21652L20.6979 8.64976C21.8616 8.74306 22.3335 10.1953 21.4469 10.9549L17.3295 14.4818L18.5874 19.7553C18.8583 20.8909 17.6229 21.7884 16.6266 21.1799L11.9999 18.354L7.37329 21.1799C6.37697 21.7884 5.14158 20.8909 5.41246 19.7553L6.67038 14.4818L2.55303 10.9549C1.66639 10.1953 2.13826 8.74306 3.302 8.64976L8.70609 8.21652L10.7881 3.2108Z" fill="currentColor"></path> </svg>
+        </span>
+        <p slot="text" class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">{meanRating} out of 5</p>
+    </Rating>
+    <div class="grid grid-cols-4 gap-5 justify-center">
+        <Card>
+            <p class="text-xl font-bold">Demographics</p>
+            <div class="text-sm font-light mb-5">Data gathered from <a class="text-blue-500" href="https://www.visualcapitalist.com/visualizing-diversity-tech-industry/">visualcapitalist.com</a></div>
+            <PopulationBar subsetName="Caucasian" subsetTotal={data.company.percent_caucasian} total={100} showSubsetTotal={false} />
+            <PopulationBar subsetName="Asian" subsetTotal={data.company.percent_asian} total={100} showSubsetTotal={false} />
+            <PopulationBar subsetName="Latino" subsetTotal={data.company.percent_latino} total={100} showSubsetTotal={false} />
+            <PopulationBar subsetName="Black" subsetTotal={data.company.percent_black} total={100} showSubsetTotal={false} />
+            <PopulationBar subsetName="Male" subsetTotal={data.company.percent_male} total={100} showSubsetTotal={false} />
+            <PopulationBar subsetName="Female" subsetTotal={data.company.percent_female} total={100} showSubsetTotal={false} />
+        </Card>
+        <Card>
+            <p class="text-xl font-bold">Stock Information</p>
+            <div class="text-sm font-light mb-5">Data gathered from <a class="text-blue-500" href={stockSource}>{stockSource}</a></div>
+            <p class="text-l">Current Price: ${stockPrice}</p>
+            <p class="text-l">Last Updated: {stockDate}</p>
+        </Card>
     </div>
- 
     <div>
         <form on:submit={onReview}>
             <Textarea class="mb-4" placeholder="Write a review" bind:value={comment}>
@@ -113,27 +128,4 @@
         {/each}
     </div>
 
-    <div class="grid gap-2 grid-cols-5">
-        <Card>
-            <p class="text-xl font-bold">Demographics</p>
-            <PopulationBar subsetName="Caucasian" subsetTotal={data.company.percent_caucasian} total={100} showSubsetTotal={false} />
-            <PopulationBar subsetName="Asian" subsetTotal={data.company.percent_asian} total={100} showSubsetTotal={false} />
-            <PopulationBar subsetName="Latino" subsetTotal={data.company.percent_latino} total={100} showSubsetTotal={false} />
-            <PopulationBar subsetName="Black" subsetTotal={data.company.percent_black} total={100} showSubsetTotal={false} />
-            <PopulationBar subsetName="Male" subsetTotal={data.company.percent_male} total={100} showSubsetTotal={false} />
-            <PopulationBar subsetName="Female" subsetTotal={data.company.percent_female} total={100} showSubsetTotal={false} />
-        </Card>
-        <Card>
-            <p class="text-xl font-bold">Stock Information</p>
-            <p class="text-l">Current Price: ${stockPrice}</p>
-            <p class="text-l">Last Updated: {stockDate}</p>
-            <p class="text-l">Source: {stockSource}</p>
-        </Card>
-    </div>
-    <br>
-    <!-- <PopulationBar subsetName="Black" subsetTotal={data.city.black_population} total={data.city.total_population} /> -->
-    <!-- <PopulationBar subsetName="Native American" subsetTotal={data.city.native_american_population} total={data.city.total_population} /> -->
-    <!-- <PopulationBar subsetName="Asian American" subsetTotal={data.city.asian_american_population} total={data.city.total_population} /> -->
-    <!-- <PopulationBar subsetName="Pacific Islander" subsetTotal={data.city.pacific_islander_population} total={data.city.total_population} /> -->
-    <!-- <PopulationBar subsetName="Hispanic" subsetTotal={data.city.hispanic_population} total={data.city.total_population} /> -->
 </div>
