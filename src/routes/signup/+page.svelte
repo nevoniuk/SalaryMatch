@@ -146,9 +146,6 @@
             prefSelections["salary"],
             prefSelections["pto"]
         ]}/>
-        <button class="save-button" on:click={onSignUp}>
-            <p>Save</p>
-        </button>
     </div>
 </div>
 <div class="login-card">
