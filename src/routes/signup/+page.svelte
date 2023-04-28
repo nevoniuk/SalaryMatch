@@ -132,17 +132,6 @@
         margin-left: 30px;
         margin-right: 30px;
     }
-    /* .button > p {
-        font-size: 12px;
-        font-weight: bold;
-    }
-    .other-buttons-container {
-        display: flex;
-        flex-direction: row;
-    }
-    .bigger >  p {
-        font-size: 16px;
-    } */
 </style>
 
 <div class="prefs card">
@@ -181,16 +170,11 @@
         <input name="password">
     </form>
 
-    <div class="bigger button">
-        <button on:click={onSignUp}>
-            <p>
-                Sign Up
-            </p>
-    </div>
+    <Button gradient color="pinkToOrange" size="md" on:click={onSignUp}>Sign Up</Button>
 
-    <div class="flex flex-col items-center">
+    <div class="flex flex-col items-center mt-5">
         <div>Already done this?</div>
-        <a href="/login"><Button gradient color="redToYellow" size="md" class="w-full">Log In</Button></a>
+        <a href="/login"><Button gradient color="purpleToBlue" size="md" class="w-full">Go to Log In</Button></a>
     </div>
 
 </div>

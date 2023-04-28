@@ -115,16 +115,10 @@
         <input name="password">
     </form>
 
-    <div class="other-buttons-container">
-        <Button gradient color="purpleToBlue" size="md" class="w-full" on:click={onSignIn}>
-            <p>Sign In</p>
-        </Button>
-    </div>
-    <div class="other-buttons-container">
-        <a href="/reset"><Button gradient color="purpleToBlue" size="md" class="w-full">Forgot Password</Button></a>
-    </div>
-    <div class="flex flex-col items-center">
-        <div class="text-base">First time?</div>
-        <a href="/signup"><Button gradient color="purpleToBlue" size="md" class="w-full">Sign Up</Button></a>
+    <div class="mt-5 flex flex-row gap-5">
+            <Button gradient color="purpleToBlue" size="md" on:click={onSignIn}>
+                <p>Sign In</p>
+            </Button>
+            <a href="/signup"><Button gradient color="pinkToOrange" size="md">Sign Up</Button></a>
     </div>
 </div>
