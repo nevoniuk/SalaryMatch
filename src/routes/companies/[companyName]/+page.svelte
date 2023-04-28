@@ -2,6 +2,7 @@
     import {authToken} from '../../../auth';
     import { Rating, Textarea, Button, Toolbar, ToolbarButton, Toggle, Card, Spinner } from 'flowbite-svelte';
     import PopulationBar from '../../city/[cityName]/PopulationBar.svelte';
+    import { onMount } from 'svelte';
 
     export let data;
     let is_anonymous = false;
@@ -13,6 +14,19 @@
     let comment = "";
 
     let submitting = false;
+
+    let stockPrice;
+    let stockDate;
+    let stockSource = "www.alphavantage.co";
+
+    const getStock = async () => {
+        const res = await fetch(`https://salarymatch.azurewebsites.net/api/stock/` + data.company.id);
+        const stock = await res.json();
+        console.log(stock);
+        stockPrice = stock.stock_price;
+        stockDate = stock.stock_date;
+    }
+    onMount(getStock);
 
     let onReview = async () => {
         var company_id = data.company.id;
@@ -99,15 +113,23 @@
         {/each}
     </div>
 
-    <Card>
-        <p class="text-xl font-bold">Demographics</p>
-        <PopulationBar subsetName="Caucasian" subsetTotal={data.company.percent_caucasian} total={100} showSubsetTotal={false} />
-        <PopulationBar subsetName="Asian" subsetTotal={data.company.percent_asian} total={100} showSubsetTotal={false} />
-        <PopulationBar subsetName="Latino" subsetTotal={data.company.percent_latino} total={100} showSubsetTotal={false} />
-        <PopulationBar subsetName="Black" subsetTotal={data.company.percent_black} total={100} showSubsetTotal={false} />
-        <PopulationBar subsetName="Male" subsetTotal={data.company.percent_male} total={100} showSubsetTotal={false} />
-        <PopulationBar subsetName="Female" subsetTotal={data.company.percent_female} total={100} showSubsetTotal={false} />
-    </Card>
+    <div class="grid gap-2 grid-cols-5">
+        <Card>
+            <p class="text-xl font-bold">Demographics</p>
+            <PopulationBar subsetName="Caucasian" subsetTotal={data.company.percent_caucasian} total={100} showSubsetTotal={false} />
+            <PopulationBar subsetName="Asian" subsetTotal={data.company.percent_asian} total={100} showSubsetTotal={false} />
+            <PopulationBar subsetName="Latino" subsetTotal={data.company.percent_latino} total={100} showSubsetTotal={false} />
+            <PopulationBar subsetName="Black" subsetTotal={data.company.percent_black} total={100} showSubsetTotal={false} />
+            <PopulationBar subsetName="Male" subsetTotal={data.company.percent_male} total={100} showSubsetTotal={false} />
+            <PopulationBar subsetName="Female" subsetTotal={data.company.percent_female} total={100} showSubsetTotal={false} />
+        </Card>
+        <Card>
+            <p class="text-xl font-bold">Stock Information</p>
+            <p class="text-l">Current Price: ${stockPrice}</p>
+            <p class="text-l">Last Updated: {stockDate}</p>
+            <p class="text-l">Source: {stockSource}</p>
+        </Card>
+    </div>
     <br>
     <!-- <PopulationBar subsetName="Black" subsetTotal={data.city.black_population} total={data.city.total_population} /> -->
     <!-- <PopulationBar subsetName="Native American" subsetTotal={data.city.native_american_population} total={data.city.total_population} /> -->
